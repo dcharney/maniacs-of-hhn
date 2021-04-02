@@ -1,0 +1,54 @@
+body {
+    margin: 0;
+}
+
+.logo {
+    display: inline;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+nav {
+    background-color: black;
+}
+
+html {
+    background-color: #1b2021;
+}
+
+.sticky-top {
+    padding: 0;
+}
+
+.navbar-brand {
+    padding-top: 0;
+    padding-bottom: 0;
+}
+
+.nav-link {
+    color: #FAF3F0;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: 500;
+    font-size: 20px;
+}
+
+#planner {
+    color: #bf3f36;
+    font-family: 'Julius Sans One', sans-serif;
+    font-weight: 1000;
+    font-size: 20px;
+}
+
+#planner:hover {
+    color: #afb7c0;
+}
+
+a {
+    text-decoration: none;
+    padding-left: 70px;
+    padding-right: 20px;
+}
+
+.navbar-nav {
+    justify-content: center;
+}

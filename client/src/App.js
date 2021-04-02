@@ -30,7 +30,7 @@ function App() {
                     <Header />
                     <div className='container'>
                         <Switch>
-                            <Route exact path="/" component={Home} />
+                            
                         </Switch>
                     </div>
                     <Footer />
