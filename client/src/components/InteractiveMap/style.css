@@ -1,0 +1,19 @@
+#imap {
+    margin: 50px;
+    border: solid 5px var(--tertiary);
+    height: 65vh;
+    overflow: hidden;
+}
+
+#imap img {
+    content: url("https://picsum.photos/id/155/1000");
+    cursor: grab;
+}
+
+/* #imap img:active {
+    cursor: grabbing;
+} */
+
+.test-info {
+    text-align: center;
+}
