@@ -37,10 +37,15 @@ const InteractiveMap = () => {
         e.target.style.transform = `translate(${oldPos.x}px,${oldPos.y}px)`;
     }
 
+    const mouseLeave = e => {
+        panning = false;
+        e.target.style.cursor = "grab";
+    }
+
     return (
         <>
             <div id="imap" className="container">
-                <img onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} id="imap-img" alt="interactive map"></img>
+                <img onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} onMouseLeave={mouseLeave} id="imap-img" alt="interactive map"></img>
             </div>
             <div className="test-info"> {displayText} </div>
         </>
