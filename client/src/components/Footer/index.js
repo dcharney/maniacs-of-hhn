@@ -1,9 +1,13 @@
 import React from 'react';
+import './style.css';
 
 const Footer = () => {
   return (
-    <footer className="w-100 mt-auto bg-secondary p-4">
-      <div className="container">&copy;2021 by DCharney&Co</div>
+    <footer id="footer" className="sticky-btm">
+      <div>
+        Footer
+        <span>&copy;2021 by DCharney&Co</span>
+      </div>
     </footer>
   );
 };
