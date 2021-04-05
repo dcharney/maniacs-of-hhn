@@ -3,7 +3,7 @@ import React from 'react';
 import './style.css';
 // import ScriptTag from 'react-script-tag';
 import { RiFocus3Line } from 'react-icons/ri';
-import { FaPlus, FaMinus } from 'react-icons/fa';
+import { FaPlus, FaMinus, FaGripLinesVertical } from 'react-icons/fa';
 
 const InteractiveMap = () => {
     // zoom and pan function
@@ -196,6 +196,9 @@ const InteractiveMap = () => {
     return (
         <div id="imap" className="frame">
             <div className="img-container" onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} onMouseLeave={mouseLeave} onWheel={wheelHandler}>
+                <div className="collapsible">
+                    <FaGripLinesVertical size={28}/>
+                </div>
                 <img src="https://picsum.photos/id/155/5000" id="imap-img" alt="interactive map" useMap='#map' onLoad={imgLoad}></img>
                 <map name="map">
                 </map>

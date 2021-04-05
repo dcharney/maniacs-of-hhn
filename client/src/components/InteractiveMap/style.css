@@ -66,3 +66,22 @@
     display: flex;
     flex-direction: column;
 }
+
+#imap .collapsible {
+    background-color: var(--dark);
+    color: var(--light);
+    opacity: 90%;
+    z-index: 999;
+    height: 100%;
+    width: 5vw;
+    position: absolute;
+    left: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#imap .collapsible:hover {
+    box-shadow: 0 0 8px var(--light);
+}
