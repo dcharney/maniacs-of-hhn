@@ -17,7 +17,6 @@ const InteractiveMap = () => {
             height: el.height,
             width: el.width
         };
-        console.log(imgDimensions.width*scale);
         // get frame dimensions
         const divDimensions = {
             height: el.parentElement.clientHeight,
@@ -25,8 +24,8 @@ const InteractiveMap = () => {
         };
         // set origin of unscaled image to center in div
         transformCenter = {
-            x: (divDimensions.width-imgDimensions.width)/2,
-            y:(divDimensions.height-imgDimensions.height)/2
+            x: (divDimensions.width-imgDimensions.width*scale)/2,
+            y:(divDimensions.height-imgDimensions.height*scale)/2
         }
         setTransform(el);
         // set transform boundaries
@@ -36,10 +35,8 @@ const InteractiveMap = () => {
             top: (transformCenter.y+(imgDimensions.height*scale-divDimensions.height)/2),
             bottom: (transformCenter.y-(imgDimensions.height*scale-divDimensions.height)/2)
         };
-        console.log(transformBounds);
     }
 
-    // initialize transform params based on loaded image
     const imgLoad = e => {
         centerImg(e.target);
     }
@@ -56,6 +53,7 @@ const InteractiveMap = () => {
             y:e.clientY-transformCenter.y 
         };
         e.target.style.cursor = "grabbing";
+        console.log(e.clientX,e.clientY)
     };
 
     const mouseUp = e => {
@@ -98,16 +96,16 @@ const InteractiveMap = () => {
 
     const wheelHandler = e => {
         if (e.target.tagName !== "IMG") {return}
-        // newPos = {
-        //     x: (e.clientX-oldPos.x)/scale,
-        //     y: (e.clientY-oldPos.y)/scale
-        // };        
+        cursor = { 
+            x:(e.clientX-transformCenter.x)/scale, 
+            y:(e.clientY-transformCenter.y)/scale 
+        };
         (e.deltaY>0) ? (scale/=1.1) : (scale*=1.1);
-        // oldPos = {
-        //     x: e.clientX-newPos.x*scale,
-        //     y: e.clientY-newPos.y*scale
-        // };
-        // setTransform(e.target);
+        transformCenter = {
+            x: e.clientX - cursor.x*scale,
+            y: e.clientY - cursor.y*scale
+        };
+        setTransform(e.target);
         console.log(scale)
     }
 
