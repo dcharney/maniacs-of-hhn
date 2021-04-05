@@ -64,7 +64,6 @@ const InteractiveMap = () => {
         if (transformCenter.y>transformBounds.top) {transformCenter.y=transformBounds.top}
         if (transformCenter.y<transformBounds.bottom) {transformCenter.y=transformBounds.bottom}
         setTransform(e.target);
-        console.log(oldPos)
     }
 
     const mouseMove = e => {
@@ -82,12 +81,15 @@ const InteractiveMap = () => {
     };
 
     const mouseLeave = e => {
-        // if (e.target.tagName !== "IMG") {return}
-        // panning = false;
-        // e.target.style.cursor = "grab";
-        // if (oldPos.x>0) {oldPos.x = 0};
-        // if (oldPos.y>0) {oldPos.y = 0};
-        // setTransform(e.target);
+        if (e.target.tagName !== "IMG") {return}
+        panning = false;
+        e.target.style.cursor = "grab";
+        // snap overscroll to bounds
+        if (transformCenter.x>transformBounds.left) {transformCenter.x=transformBounds.left}
+        if (transformCenter.x<transformBounds.right) {transformCenter.x=transformBounds.right}
+        if (transformCenter.y>transformBounds.top) {transformCenter.y=transformBounds.top}
+        if (transformCenter.y<transformBounds.bottom) {transformCenter.y=transformBounds.bottom}
+        setTransform(e.target);
     }
 
     const wheelHandler = e => {
