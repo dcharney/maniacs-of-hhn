@@ -1,13 +1,5 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-import App from './App';
-
-ReactDOM.render(
-    <App />,
-  document.getElementById('root')
-);
-=======
 import './index.css';
 import App from './App';
 import * as serviceWorkerRegistration from './serviceWorkerRegistration';
@@ -29,4 +21,3 @@ serviceWorkerRegistration.unregister();
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
->>>>>>> 76cf2e5c37e08870a5b00b5f093bd27bbd6380a8
