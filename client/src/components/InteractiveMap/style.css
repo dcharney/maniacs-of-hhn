@@ -6,6 +6,7 @@
     position: relative;
 }
 
+
 #imap .img-container {
     height: 100%;
     width:100%;
@@ -20,23 +21,48 @@
     min-height: 100%;
     z-index: -1;
     transform-origin: 0 0;
-}
-
-#imap .interactives {
-    z-index: 999;
-    position: absolute;
-    bottom: 4%;
-    right: 4%;
-}
-
-.test-info {
-    text-align: center;
-}
-
-img {
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
     user-select: none;
-  }
+}
+
+#imap .map-ctrl {
+    z-index: 999;
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+    display: flex;
+    flex-direction: column;
+    cursor: pointer;
+}
+
+#imap button {
+    height: 3vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: var(--dark);
+    color: var(--light);
+    border: solid 1px var(--primary);
+    outline: none;
+    cursor: pointer;
+    opacity: 80%;
+}
+
+#imap button:hover {
+    box-shadow: 0 0 5px var(--light);
+    border: solid 1px var(--dark);
+}
+
+#imap button:active {
+    box-shadow: 0 0 5px var(--light);
+    border: solid 1px var(--light);
+}
+
+#imap .zoom-ctrl {
+    margin-top: 3px;
+    display: flex;
+    flex-direction: column;
+}

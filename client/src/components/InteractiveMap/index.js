@@ -2,6 +2,8 @@ import React from 'react';
 // import { Link } from 'react-router-dom';
 import './style.css';
 // import ScriptTag from 'react-script-tag';
+import { RiFocus3Line } from 'react-icons/ri';
+import { FaPlus, FaMinus } from 'react-icons/fa';
 
 const InteractiveMap = () => {
     // zoom and pan function
@@ -87,7 +89,7 @@ const InteractiveMap = () => {
     
     const mouseDown = e => {
         if (e.target.tagName !== "IMG") {return}
-
+        e.target.style.transition = 'default';
         panning = true;
         cursor = { 
             x:e.clientX-transformCenter.x, 
@@ -136,14 +138,13 @@ const InteractiveMap = () => {
 
     const wheelHandler = e => {
         if (e.target.tagName !== "IMG") {return}
+        e.target.style.transition = 'default';
         cursor = { 
             x:(e.clientX-transformCenter.x)/scale, 
             y:(e.clientY-transformCenter.y)/scale 
         };
-        (e.deltaY>0) ? (scale/=1.1) : (scale*=1.1);
-        console.log('scale before: ' + scale)
+        (e.deltaY>0) ? (scale/=1.02) : (scale*=1.02);
         scale = Math.min(Math.max(transformBounds.scaleMin,scale), transformBounds.scaleMax);
-        console.log('scale after: ' + scale)
         transformCenter = {
             x: e.clientX - cursor.x*scale,
             y: e.clientY - cursor.y*scale
@@ -154,17 +155,60 @@ const InteractiveMap = () => {
 
     const recenter = e => {
         const imgEl = e.target.closest("#imap").querySelector("img");
+        imgEl.style.transition = `width 0.5s, height 0.5s, transform 0.5s`;
         centerImg(imgEl);
+        // imgEl.style.transition = 'default';
+    }
+
+    const zoomHandler = e => {
+        const imgEl = e.target.closest("#imap").querySelector("img");
+        const cmd = e.target.closest("button").className;
+        // set zoom pt to center of div
+        const zoomCenter = {
+            x: imgEl.parentElement.clientHeight/2,
+            y: imgEl.parentElement.clientWidth/2
+        };
+        cursor = { 
+            x:(zoomCenter.x-transformCenter.x)/scale, 
+            y:(zoomCenter.y-transformCenter.y)/scale 
+        };
+        switch(cmd) {
+            case "zoomIn":
+                scale*=1.5;
+                break;
+            case "zoomOut":
+                scale/=1.5;
+                break;
+            default:
+                break;
+        }
+        scale = Math.min(Math.max(transformBounds.scaleMin,scale), transformBounds.scaleMax);
+        transformCenter = {
+            x: zoomCenter.x - cursor.x*scale,
+            y: zoomCenter.y - cursor.y*scale
+        };
+        imgEl.style.transition = `width 0.5s, height 0.5s, transform 0.5s`;
+        setTransform(imgEl);
+        updateBounds(imgEl);
+        // imgEl.style.transition = 'default';
     }
 
     return (
         <div id="imap" className="frame">
             <div className="img-container" onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} onMouseLeave={mouseLeave} onWheel={wheelHandler}>
-                <img src="https://picsum.photos/id/155/1000" id="imap-img" alt="interactive map" useMap='#map' onLoad={imgLoad}></img>
+                <img src="https://picsum.photos/id/155/5000" id="imap-img" alt="interactive map" useMap='#map' onLoad={imgLoad}></img>
                 <map name="map">
                 </map>
-                <div className="interactives">
-                    <button onClick={recenter}>recenter</button>
+                <div className="map-ctrl">
+                    <button onClick={recenter}><RiFocus3Line /></button>
+                    <div className="zoom-ctrl">
+                        <button className="zoomIn" onClick={zoomHandler}>
+                            <FaPlus />
+                        </button>
+                        <button className="zoomOut" onClick={zoomHandler}>
+                            <FaMinus />
+                        </button>
+                    </div>
                 </div>
             </div>
             
