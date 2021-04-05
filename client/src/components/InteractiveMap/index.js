@@ -9,35 +9,39 @@ const InteractiveMap = () => {
         transformCenter = { x:0, y:0},
         transformBounds = {},
         cursor = { x:0, y:0},
-        oldPos = { x:0, y:0},
         scale = 1;
     
-    // initialize transform params based on loaded image
-    const imgLoad = e => {
+    const centerImg = el => {
         // get image dimensions
         const imgDimensions = {
-            height: e.target.height,
-            width: e.target.width
+            height: el.height,
+            width: el.width
         };
+        console.log(imgDimensions.width*scale);
         // get frame dimensions
         const divDimensions = {
-            height: e.target.parentElement.clientHeight,
-            width: e.target.parentElement.clientWidth
+            height: el.parentElement.clientHeight,
+            width: el.parentElement.clientWidth
         };
         // set origin of unscaled image to center in div
         transformCenter = {
             x: (divDimensions.width-imgDimensions.width)/2,
             y:(divDimensions.height-imgDimensions.height)/2
         }
-        setTransform(e.target);
+        setTransform(el);
         // set transform boundaries
         transformBounds = {
-            right: transformCenter.x-(imgDimensions.width-divDimensions.width)/2,
-            left: transformCenter.x+(imgDimensions.width-divDimensions.width)/2,
-            top: transformCenter.y+(imgDimensions.height-divDimensions.height)/2,
-            bottom: transformCenter.y-(imgDimensions.height-divDimensions.height)/2
+            right: (transformCenter.x-(imgDimensions.width*scale-divDimensions.width)/2),
+            left: (transformCenter.x+(imgDimensions.width*scale-divDimensions.width)/2),
+            top: (transformCenter.y+(imgDimensions.height*scale-divDimensions.height)/2),
+            bottom: (transformCenter.y-(imgDimensions.height*scale-divDimensions.height)/2)
         };
-        console.log(transformBounds)
+        console.log(transformBounds);
+    }
+
+    // initialize transform params based on loaded image
+    const imgLoad = e => {
+        centerImg(e.target);
     }
     
     const setTransform = imgEl => {
@@ -93,27 +97,23 @@ const InteractiveMap = () => {
     }
 
     const wheelHandler = e => {
-        // if (e.target.tagName !== "IMG") {return}
+        if (e.target.tagName !== "IMG") {return}
         // newPos = {
         //     x: (e.clientX-oldPos.x)/scale,
         //     y: (e.clientY-oldPos.y)/scale
         // };        
-        // (e.deltaY>0) ? (scale/=1.1) : (scale*=1.1);
+        (e.deltaY>0) ? (scale/=1.1) : (scale*=1.1);
         // oldPos = {
         //     x: e.clientX-newPos.x*scale,
         //     y: e.clientY-newPos.y*scale
         // };
         // setTransform(e.target);
-        // console.log(scale)
+        console.log(scale)
     }
 
     const recenter = e => {
         const imgEl = e.target.closest("#imap").querySelector("img");
-        oldPos = {
-            x:0,
-            y:0
-        };
-        setTransform(imgEl);
+        centerImg(imgEl);
     }
 
     return (
