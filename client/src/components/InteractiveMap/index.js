@@ -32,11 +32,17 @@ const InteractiveMap = () => {
         }
         // set transform boundaries
         transformBounds = {
+            ...transformBounds,
             right: (origin.x-(imgDimensions.width*scale-divDimensions.width)/2),
             left: (origin.x+(imgDimensions.width*scale-divDimensions.width)/2),
             top: (origin.y+(imgDimensions.height*scale-divDimensions.height)/2),
             bottom: (origin.y-(imgDimensions.height*scale-divDimensions.height)/2)
         };
+        // snap overscroll to bounds
+        if (transformCenter.x>transformBounds.left) {transformCenter.x=transformBounds.left}
+        if (transformCenter.x<transformBounds.right) {transformCenter.x=transformBounds.right}
+        if (transformCenter.y>transformBounds.top) {transformCenter.y=transformBounds.top}
+        if (transformCenter.y<transformBounds.bottom) {transformCenter.y=transformBounds.bottom}
     };
 
     const centerImg = el => {
@@ -51,6 +57,28 @@ const InteractiveMap = () => {
 
     const imgLoad = e => {
         centerImg(e.target);
+        // calculate max possible zoom out
+        imgDimensions = {
+            height: e.target.height,
+            width: e.target.width
+        };
+        // get frame dimensions
+        divDimensions = {
+            height: e.target.parentElement.clientHeight,
+            width: e.target.parentElement.clientWidth
+        };
+        const scaleMinWidth = divDimensions.width/imgDimensions.width;
+        const scaleMinHeight = divDimensions.height/imgDimensions.height;
+        let scaleMin;
+        if (scaleMinHeight>scaleMinWidth) {
+            scaleMin = scaleMinHeight
+        } else {scaleMin = scaleMinWidth};
+        transformBounds = {
+            ...transformBounds,
+            scaleMin,
+            scaleMax: 4
+        };
+        console.log(transformBounds);
     }
     
     const setTransform = imgEl => {
@@ -113,6 +141,9 @@ const InteractiveMap = () => {
             y:(e.clientY-transformCenter.y)/scale 
         };
         (e.deltaY>0) ? (scale/=1.1) : (scale*=1.1);
+        console.log('scale before: ' + scale)
+        scale = Math.min(Math.max(transformBounds.scaleMin,scale), transformBounds.scaleMax);
+        console.log('scale after: ' + scale)
         transformCenter = {
             x: e.clientX - cursor.x*scale,
             y: e.clientY - cursor.y*scale
