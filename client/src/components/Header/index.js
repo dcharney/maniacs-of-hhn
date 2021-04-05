@@ -1,17 +1,13 @@
 import React from 'react';
-<<<<<<< HEAD
-import "bootstrap/dist/css/bootstrap.min.css";
+import '../../index.css';
 import { Link } from 'react-router-dom';
-import'./index.css';
-import logo from './logo.png';
-=======
-import './style.css';
->>>>>>> 76cf2e5c37e08870a5b00b5f093bd27bbd6380a8
+import logo from 'logo.png';
 
 const Header = () => {
 
+    const image = require('logo.png').default;
+
     return (
-<<<<<<< HEAD
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
             <div className="container-fluid">
                 <a className="navbar-brand" href="#"><img className="logo" src={logo} alt="logo..." /></a>
@@ -46,14 +42,4 @@ const Header = () => {
         </nav>
     )
 }
-=======
-        <header id="header" className="pin-top">
-            <h1 className="title">
-                Header
-            </h1>
-        </header>
-    );
-};
-
->>>>>>> 76cf2e5c37e08870a5b00b5f093bd27bbd6380a8
 export default Header;
