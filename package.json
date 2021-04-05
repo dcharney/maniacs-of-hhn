@@ -21,7 +21,9 @@
   },
   "homepage": "https://github.com/dcharney/maniacs-of-hhn#readme",
   "dependencies": {
+    "firebase": "^8.3.2",
     "if-env": "^1.0.4",
+    "react-firebase-hooks": "^3.0.3",
     "styled-components": "^5.2.3"
   },
   "devDependencies": {

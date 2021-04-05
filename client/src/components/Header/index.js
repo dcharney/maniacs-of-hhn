@@ -15,25 +15,25 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto mr-auto">
                         <li className="nav-item">
-                            <Link smooth={true} to="home" className="nav-link px-5" href="#">home</Link>
+                            <Link to="/" className="nav-link px-5" href="#">home</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="explore" className="nav-link px-5" href="#">explore</Link>
+                            <Link to="explore" className="nav-link px-5" href="#">explore</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="fan" className="nav-link px-5" href="#">fan content</Link>
+                            <Link to="fan" className="nav-link px-5" href="#">fan content</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="store" className="nav-link px-5" href="#">store</Link>
+                            <Link to="store" className="nav-link px-5" href="#">store</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="rumors" className="nav-link px-5" href="#">rumors</Link>
+                            <Link to="rumors" className="nav-link px-5" href="#">rumors</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="chat" className="nav-link px-5" href="#">chat</Link>
+                            <Link to="chat" className="nav-link px-5" href="#">chat</Link>
                         </li>
                         <li className="nav-item">
-                            <Link smooth={true} to="content" className="nav-link px-5" id="planner" href="#">my content</Link>
+                            <Link to="content" className="nav-link px-5" id="planner" href="#">my content</Link>
                         </li>
                     </ul>
                 </div>
