@@ -9,14 +9,14 @@
 
 body {
     margin: 0;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Galdeano', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     color: var(--light);
 }
 
 code {
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Galdeano', sans-serif;
 }
 
 nav {
@@ -48,14 +48,14 @@ html {
 
 .nav-link {
     color: #FAF3F0;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Galdeano', sans-serif;
     font-weight: 500;
     font-size: 20px;
 }
 
 #planner {
     color: #bf3f36;
-    font-family: 'Julius Sans One', sans-serif;
+    font-family: 'Galdeano', sans-serif;
     font-weight: 1000;
     font-size: 20px;
 }

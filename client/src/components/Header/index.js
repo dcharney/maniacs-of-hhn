@@ -1,11 +1,11 @@
 import React from 'react';
 import '../../index.css';
 import { Link } from 'react-router-dom';
-import logo from 'logo.png';
+
+const logo = require('./logo.png').default;
 
 const Header = () => {
 
-    const image = require('logo.png').default;
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -16,25 +16,25 @@ const Header = () => {
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul className="navbar-nav ml-auto mr-auto">
                         <li className="nav-item">
-                            <Link to="/" className="nav-link px-5" href="#">home</Link>
+                            <Link to="/" className="nav-link px-5" href="#">HOME</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="explore" className="nav-link px-5" href="#">explore</Link>
+                            <Link to="explore" className="nav-link px-5" href="#">EXPLORE</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="fan" className="nav-link px-5" href="#">fan content</Link>
+                            <Link to="fan" className="nav-link px-5" href="#">FAN CONTENT</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="store" className="nav-link px-5" href="#">store</Link>
+                            <Link to="store" className="nav-link px-5" href="#">STORE</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="rumors" className="nav-link px-5" href="#">rumors</Link>
+                            <Link to="rumors" className="nav-link px-5" href="#">RUMORS</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="chat" className="nav-link px-5" href="#">chat</Link>
+                            <Link to="chat" className="nav-link px-5" href="#">CHAT</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="content" className="nav-link px-5" id="planner" href="#">my content</Link>
+                            <Link to="content" className="nav-link px-5" id="planner" href="#">MY CONTENT</Link>
                         </li>
                     </ul>
                 </div>
