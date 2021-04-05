@@ -1,0 +1,42 @@
+#imap {
+    margin: 50px;
+    border: solid 5px var(--tertiary);
+    height: 65vh;
+    overflow: hidden;
+    position: relative;
+}
+
+#imap .img-container {
+    height: 100%;
+    width:100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#imap img {
+    cursor: grab;
+    object-fit: cover;
+    min-width: 100%;
+    min-height: 100%;
+    z-index: -1;
+}
+
+#imap .interactives {
+    z-index: 999;
+    position: absolute;
+    bottom: 4%;
+    right: 4%;
+}
+
+.test-info {
+    text-align: center;
+}
+
+img {
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
+    user-select: none;
+  }
