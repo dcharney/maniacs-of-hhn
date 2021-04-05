@@ -7,34 +7,46 @@ const InteractiveMap = () => {
     // zoom and pan function
     let panning = false, 
         transformCenter = { x:0, y:0},
+        origin = {},
         transformBounds = {},
+        imgDimensions = {},
+        divDimensions = {},
         cursor = { x:0, y:0},
         scale = 1;
     
-    const centerImg = el => {
+    const updateBounds = el => {
         // get image dimensions
-        const imgDimensions = {
+        imgDimensions = {
             height: el.height,
             width: el.width
         };
         // get frame dimensions
-        const divDimensions = {
+        divDimensions = {
             height: el.parentElement.clientHeight,
             width: el.parentElement.clientWidth
         };
         // set origin of unscaled image to center in div
-        transformCenter = {
+        origin = {
             x: (divDimensions.width-imgDimensions.width*scale)/2,
             y:(divDimensions.height-imgDimensions.height*scale)/2
         }
-        setTransform(el);
         // set transform boundaries
         transformBounds = {
-            right: (transformCenter.x-(imgDimensions.width*scale-divDimensions.width)/2),
-            left: (transformCenter.x+(imgDimensions.width*scale-divDimensions.width)/2),
-            top: (transformCenter.y+(imgDimensions.height*scale-divDimensions.height)/2),
-            bottom: (transformCenter.y-(imgDimensions.height*scale-divDimensions.height)/2)
+            right: (origin.x-(imgDimensions.width*scale-divDimensions.width)/2),
+            left: (origin.x+(imgDimensions.width*scale-divDimensions.width)/2),
+            top: (origin.y+(imgDimensions.height*scale-divDimensions.height)/2),
+            bottom: (origin.y-(imgDimensions.height*scale-divDimensions.height)/2)
         };
+    };
+
+    const centerImg = el => {
+        updateBounds(el);
+        // set origin of unscaled image to center in div
+        transformCenter = {
+            x: origin.x,
+            y: origin.y
+        }
+        setTransform(el);
     }
 
     const imgLoad = e => {
@@ -47,13 +59,13 @@ const InteractiveMap = () => {
     
     const mouseDown = e => {
         if (e.target.tagName !== "IMG") {return}
+
         panning = true;
         cursor = { 
             x:e.clientX-transformCenter.x, 
             y:e.clientY-transformCenter.y 
         };
         e.target.style.cursor = "grabbing";
-        console.log(e.clientX,e.clientY)
     };
 
     const mouseUp = e => {
@@ -106,7 +118,7 @@ const InteractiveMap = () => {
             y: e.clientY - cursor.y*scale
         };
         setTransform(e.target);
-        console.log(scale)
+        updateBounds(e.target);
     }
 
     const recenter = e => {
