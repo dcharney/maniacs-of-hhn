@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../index.css';
+import './style.css';
 import { Link } from 'react-router-dom';
 
 const logo = require('./logo.png').default;
@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#"><img className="logo" src={logo} alt="logo..." /></a>
+                <a className="navbar-brand" href="/"><img className="logo" src={logo} alt="logo..." /></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">

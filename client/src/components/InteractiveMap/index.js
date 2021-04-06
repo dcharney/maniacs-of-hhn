@@ -80,7 +80,6 @@ const InteractiveMap = () => {
             scaleMin,
             scaleMax: 4
         };
-        console.log(transformBounds);
     }
     
     const setTransform = imgEl => {
