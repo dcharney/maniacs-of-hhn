@@ -3,19 +3,19 @@
     border: solid 5px var(--tertiary);
     height: 65vh;
     overflow: hidden;
-    position: relative;
+    
 }
 
 
 #imap .img-container {
     height: 100%;
     width:100%;
-    position: absolute;
+    /* position: absolute;
     top: 0;
-    left: 0;
+    left: 0; */
 }
 
-#imap .map {
+#imap img {
     cursor: grab;
     min-width: 100%;
     min-height: 100%;
@@ -27,7 +27,7 @@
     -o-user-drag: none;
     user-select: none;
 }
-
+/*
 #imap .map-ctrl {
     z-index: 999;
     position: absolute;
@@ -84,14 +84,11 @@
 
 #imap .collapsible:hover {
     box-shadow: 0 0 8px var(--light);
-}
-
- /* #imap .map {
-    z-index: 999;
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
 } */
+
+#imap .map-icon {
+    position: absolute;
+    top:2500px;
+    left:2500px;
+    z-index: 999;
+}
