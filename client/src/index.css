@@ -27,10 +27,6 @@ html {
     background-color: var(--primary);
 }
 
-#content {
-    padding-top: 80px;
-}
-
 .logo {
     display: inline;
     margin-left: auto;

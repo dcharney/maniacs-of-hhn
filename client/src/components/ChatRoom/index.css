@@ -1,15 +1,14 @@
-  .App {
+  .Chat {
     text-align: center;
-    max-width: 728px;
-    margin: 0 auto;
+    max-width: 600px;
+    margin: 0 auto 100px auto;
   }
   
-  .App header {
-    background-color: #181717;
+  .Chat header {
+    background-color: #4b0303;
     height: 10vh;
     min-height: 50px;
     color: white;
-    position: fixed;
     width: 100%;
     max-width: 728px;
     top: 0;
@@ -21,17 +20,16 @@
     box-sizing: border-box;
   }
   
-  .App section {
+  .Chat section {
     display: flex;
     flex-direction: column;
     justify-content: center;
-    min-height: 100vh;
-    background-color: rgb(40, 37, 53);
+    background-color: rgb(0, 0, 0);
   }
   
   main {
     padding: 10px;
-    height: 80vh;
+    height: 48vh;
     margin: 10vh 0 10vh;
     overflow-y: scroll;
     display: flex;
@@ -43,16 +41,15 @@
   }
   
   main::-webkit-scrollbar-track {
-    background: #1e1e24;
+    background: #241e1e;
   }
   
   main::-webkit-scrollbar-thumb {
-    background: #910e0e;
+    background: #4b0303;
   }
   
   form {
     height: 10vh;
-    position: fixed;
     bottom: 0;
     background-color: rgb(24, 23, 23);
     width: 100%;
@@ -63,7 +60,7 @@
   
   form button {
     width: 20%;
-    background-color: rgb(56, 56, 143);
+    background-color: rgb(121, 21, 21);
   }
   
   
@@ -79,7 +76,7 @@
   }
   
   button {
-    background-color: #282c34; /* Green */
+    background-color: #282c34;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -130,15 +127,15 @@
   
   .sent p {
     color: white;
-    background: #f51c1c;
+    background: #4b0303;
     align-self: flex-end;
   }
   .received p {
-    background: #e5e5ea;
+    background: #535353;
     color: black;
   }
-  
-  img {
+
+  .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;

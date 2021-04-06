@@ -9,7 +9,8 @@ import 'firebase/analytics';
 import { useAuthState } from 'react-firebase-hooks/auth';
 import { useCollectionData } from 'react-firebase-hooks/firestore';
 
-firebase.initializeApp({
+if (firebase.apps.length === 0) {
+  firebase.initializeApp({
     apiKey: "AIzaSyA83OcPGuRvGctJJyiCfuxlyhii_OULU2Y",
     authDomain: "maniacs-chatroom.firebaseapp.com",
     projectId: "maniacs-chatroom",
@@ -17,7 +18,8 @@ firebase.initializeApp({
     messagingSenderId: "196282215934",
     appId: "1:196282215934:web:8a3f1b10e1a4521e2124af",
     measurementId: "G-YS6TVWM8T6"
-})
+  })
+}
 
 const auth = firebase.auth();
 const firestore = firebase.firestore();
@@ -31,7 +33,7 @@ function Chat() {
   return (
     <div className="Chat">
       <header>
-        <h1>⚛️🔥💬</h1>
+        <h1>Maniacs Chat</h1>
         <SignOut />
       </header>
 
@@ -105,7 +107,7 @@ function ChatRoom() {
 
       <input value={formValue} onChange={(e) => setFormValue(e.target.value)} placeholder="say something nice" />
 
-      <button type="submit" disabled={!formValue}>🕊️</button>
+      <button type="submit" disabled={!formValue}>SCARE</button>
 
     </form>
   </>)
@@ -119,7 +121,7 @@ function ChatMessage(props) {
 
   return (<>
     <div className={`message ${messageClass}`}>
-      <img src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
+      <img className="avatar" src={photoURL || 'https://api.adorable.io/avatars/23/abott@adorable.png'} />
       <p>{text}</p>
     </div>
   </>)
