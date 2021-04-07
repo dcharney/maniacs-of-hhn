@@ -1,7 +1,7 @@
 import React from 'react';
 import FanContent from '../components/FanContent';
 
-const FanContent = () => {
+const Fan = () => {
     return (
         <main>
             <FanContent />
@@ -9,4 +9,4 @@ const FanContent = () => {
     );
 };
 
-export default FanContent;
+export default Fan;
