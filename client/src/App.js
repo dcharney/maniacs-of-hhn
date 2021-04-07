@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Chat from './components/ChatRoom';
+import Rumors from './pages/Rumors';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -35,6 +36,7 @@ function App() {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/chat" component={Chat} />
+                            <Route exact path="/rumors" component={Rumors}/>
                         </Switch>
                     </div>
                     <Footer />

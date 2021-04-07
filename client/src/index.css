@@ -69,3 +69,13 @@ a {
 .navbar-nav {
     justify-content: center;
 }
+
+/* RUMORS SECTION/PAGE START */
+.rumors {
+    margin: 0;
+    background-color: var(--primary);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/* RUMORS SECTION/PAGE END */
