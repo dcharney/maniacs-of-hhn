@@ -1,25 +1,6 @@
 import React, { useReducer, useState } from 'react';
 import './style.css';
 
-// function clickMe(){
-//     alert('Add Recipe');
-// }
-
-// const FanContent = () => {
-
-
-//     return (
-//         <div className="fan">
-//             <h2>Recipes</h2>
-//             <button onClick={clickMe}>
-//                 +
-//             </button>
-
-//         </div>
-
-//     );
-
-// };
 
 const formReducer = (state, event) => {
     return {
@@ -64,14 +45,14 @@ function FanContent() {
           <form onSubmit={handleSubmit}>
           <fieldset>
              <label>
-               <p>Recipes Name</p>
-               <input name="name" onChange={handleChange}/>
+               <p>Recipes Name:</p>
+               <input className="recipe" name="name" onChange={handleChange}/>
              </label>
            </fieldset>
            <fieldset>
          <label>
-           <p>Ingredients</p>
-           <input name="ingredients" onChange={handleChange}/>
+           <p>Ingredients:</p>
+           <input classname="ingredients" name="ingredients" onChange={handleChange}/>
            </label>
            </fieldset>
            <button type="submit">Submit</button>

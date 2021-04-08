@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
+import Cost from './pages/Costume';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -36,6 +37,7 @@ function App() {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/fan" component={Fan} />
+                            <Route exact path="/cost" component={Cost} />
                         </Switch>
                     </div>
                     <Footer />
