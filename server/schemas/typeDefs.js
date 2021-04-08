@@ -45,6 +45,14 @@ const typeDefs = gql`
         createdAt: String
     }
 
+    type Rating {
+        _id: ID
+        username: String
+        attractionId: String
+        scareFactor: Float
+        crowdIndex: Float
+    }
+
     type Auth {
         token: ID!
         user: User
@@ -53,11 +61,21 @@ const typeDefs = gql`
     type Query {
         users: [User]
         me: User
+        attractions: [Attraction]
+        attraction(_id: ID!): Attraction
+        posts: [Post]
+        post(_id: ID!): Post
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
+        savePost(postId: ID!) : User
+        saveAttraction(attractionId: ID!) : User
+        addPostComment(username: String!, commentBody: String!, createdAt: String) : Post
+        addAttractionComment(username: String!, commentBody: String!, createdAt: String) : Attraction
+        addReply(username: String!, replyBody: String!, createdAt: String) : Comment
+        addRating(username: String, attractionId: String, scareFactor: Float, crowdIndex: Float) : Rating
     }
 `;
 
