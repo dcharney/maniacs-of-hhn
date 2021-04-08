@@ -5,6 +5,7 @@ import { Timeline } from 'react-twitter-widgets'
 const Rumors = () => {
     return (
         <main className="rumors">
+            <h1>Updates, news and social via Twitter</h1>
             <Timeline
               dataSource={{
                 sourceType: 'list',
@@ -13,7 +14,7 @@ const Rumors = () => {
               options={{
                 width: '750',
                 theme: "dark",
-                chrome: 'transparent'
+                chrome: "noheader, nofooter, transparent",
               }}
               renderError={(_err) => <p>Could not load timeline</p>}
             />
