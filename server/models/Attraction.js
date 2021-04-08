@@ -23,7 +23,9 @@ const attractionSchema = new Schema(
 			required: true,
 			trim: true
 		},
-		location: {},
+		location: {
+			type: String,
+		},
 		category: {
 			type: String,
 			trim: true

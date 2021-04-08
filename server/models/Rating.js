@@ -16,7 +16,8 @@ const ratingSchema = new Schema(
 			trim: true
 		},
 		attractionId: {
-
+			type: String,
+			required: true
 		},
 		scareFactor: {
 			type: Number

@@ -5,25 +5,33 @@ const { Schema, model } = require('mongoose');
 	-attraction id?, post id?,
 	-type= attraction?, post?
 */
-const favoriteSchema = new Schema(
+const favoritePostSchema = new Schema(
     {
         username: {
             type: String,
             required: true,
             trim: true
         },
-        posts: {
+        post: {
             type: Schema.Types.ObjectId,
             ref: 'Post'
+        }
+    }
+);
+
+const favoriteAttractionSchema = new Schema(
+    {
+        username: {
+            type: String,
+            required: true,
+            trim: true
         },
-        attractions: {
+        attraction: {
             type: Schema.Types.ObjectId,
             ref: 'Attraction'
         }
     }
 );
 
-const Favorite = model('Favorite', favoriteSchema);
-
-module.exports = Favorite;
+module.exports = favoritePostSchema, favoriteAttractionSchema;
 

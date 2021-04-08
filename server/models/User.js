@@ -1,5 +1,6 @@
 const { Schema, model } = require('mongoose');
 const bcrypt = require('bcrypt');
+const { favoritePostSchema, favoriteAttractionSchema } = require('./Favorites');
 
 /* 
 -User
@@ -29,12 +30,8 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
-        favorites: [
-            {
-                type: Schema.Types.ObjectId,
-                ref: 'Favorite'
-            }
-        ]      
+        favoritePost: [favoritePostSchema],
+        favoriteAttraction: [favoriteAttractionSchema]   
     },
     // {
     //     toJSON: {
