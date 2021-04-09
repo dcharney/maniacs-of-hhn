@@ -42,9 +42,9 @@ function App() {
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/fan" component={Fan} />
                             <Route exact path="/cost" component={Cost} />
-                            <Route exact path="/fan" component={CreateNewPost} />
-                            <Route exact path="/fan" component={DisplayAllPosts} />
-                            <Route exact path="/fan" component={Posts} />
+                            <Route exact path="/newPost" component={CreateNewPost} />
+                            <Route exact path="/allPost" component={DisplayAllPosts} />
+                            <Route exact path="/post" component={Posts} />
                         </Switch>
                     </div>
                     <Footer />

@@ -10,10 +10,9 @@ import Post from '../components/Post';
 const Fan = () => {
     return (
         <main>
-            <CreateNewPost />
+
             <DisplayAllPost />
-            <ModifyPost />
-            <Post />
+
 
           
         </main>
