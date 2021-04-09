@@ -6,10 +6,14 @@ import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
 import Cost from './pages/Costume';
+import CreateNewPost from './components/CreateNewPost';
+import Posts from './components/Post';
+import DisplayAllPosts from './components/DisplayAllPost';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+
 
 
 const client = new ApolloClient({
@@ -38,6 +42,9 @@ function App() {
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/fan" component={Fan} />
                             <Route exact path="/cost" component={Cost} />
+                            <Route exact path="/fan" component={CreateNewPost} />
+                            <Route exact path="/fan" component={DisplayAllPosts} />
+                            <Route exact path="/fan" component={Posts} />
                         </Switch>
                     </div>
                     <Footer />

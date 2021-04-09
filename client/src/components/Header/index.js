@@ -22,7 +22,7 @@ const Header = () => {
                             <Link to="explore" className="nav-link px-5" href="#">EXPLORE</Link>
                         </li>
                         <li className="nav-item dropdrown">
-                            <Link class="nav-link dropdown-toggle" href="FANCONTENT" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fan Content</Link>
+                            <Link to="fan"class="nav-link dropdown-toggle" href="FANCONTENT" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fan Content</Link>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
                             <Link to="cost" class="dropdown-item" href="#">Costume</Link>
                         </li>

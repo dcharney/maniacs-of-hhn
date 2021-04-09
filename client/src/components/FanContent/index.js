@@ -1,64 +1,29 @@
-import React, { useReducer, useState } from 'react';
-import './style.css';
+// import React from 'react';
+// import './style.css';
 
+// // import CreateNewPost from './Components/CreateNewPost'
 
-const formReducer = (state, event) => {
-    return {
-      ...state,
-      [event.name]: event.value
-    }
-   }
+// // const FanContent = ( ) => {
+// //     return (
+// //         <>
+// //     <form>
+// //           <h1>Create New Post</h1>
+// //           <input type ="text" placeHolder="title" size="39" required></input>
+// //           <br />
+// //           <br />
+// //           <textarea placeHolder="contents" rows="8" cols="41"required></textarea>
+// //           <br />
+// //           <br />
+// //           <button>Save Post</button>
+// //     </form>
+// //     <section>
+// //     <h3>Post title will appear here</h3>
+// //     <p> Post contents will appear here</p>
+// //     <button>Edit</button>
+// //     <button>Delete</button>
+// //     </section>
+// //         </>
+// //       );
+// //     };
+// export default FanContent;
 
-
-function FanContent() {
-    const [formData, setFormData] = useReducer(formReducer, {});
-    const [submitting, setSubmitting] = useState(false);
-    const handleSubmit = event => {
-        event.preventDefault();
-        setSubmitting(true);
-
-        setTimeout(() => {
-          setSubmitting(false);
-        }, 3000)
-      }
-
-      const handleChange = event => {
-        setFormData({
-          name: event.target.name,
-          value: event.target.value,
-        });
-      }
-
-    return(
-        <div className="wrapper">
-          <h1>Recipes</h1>
-          {submitting &&
-       <div>
-         You are submitting the following:
-         <ul>
-           {Object.entries(formData).map(([name, value]) => (
-             <li key={name}><strong>{name}</strong>:{value.toString()}</li>
-           ))}
-         </ul>
-       </div>
-      }
-          <form onSubmit={handleSubmit}>
-          <fieldset>
-             <label>
-               <p>Recipes Name:</p>
-               <input className="recipe" name="name" onChange={handleChange}/>
-             </label>
-           </fieldset>
-           <fieldset>
-         <label>
-           <p>Ingredients:</p>
-           <input classname="ingredients" name="ingredients" onChange={handleChange}/>
-           </label>
-           </fieldset>
-           <button type="submit">Submit</button>
-          </form>
-        </div>
-      )
-    }
-
-export default FanContent;
