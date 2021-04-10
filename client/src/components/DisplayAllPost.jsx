@@ -106,7 +106,7 @@ const DisplayAllPosts = () => {
       </section>
         </section>
       ) : (
-      <div><h1>All Posts</h1>
+      <div><h1 className="allpost">Recipes</h1>
         <section className="all-post">
         {allPosts.map(eachPost => {
           return (
@@ -120,7 +120,7 @@ const DisplayAllPosts = () => {
             />
           );
         })}
-      <section className="button-wrapper">
+      <section className="button-wrapper1">
       <button onClick={toggleCreateNewPost} className="button">Create New</button>
       </section>
         </section>

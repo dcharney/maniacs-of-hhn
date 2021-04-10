@@ -3,17 +3,17 @@ const ModifyPost = (props) => {
   return (
     <><section className="create-post">
       <form>
-        <h1>Modify Post</h1>
-        <input type='text'
+        <h1 className="allpost">Modify Post</h1>
+        <input className="textArea" type='text'
           defaultValue={props.title}
           onChange={props.savePostTitleToState}
           text
           placeholder="title"
-          size="39"
+          size="41"
         ></input>
         <br />
         <br />
-        <textarea
+        <textarea className="textArea"
           defaultValue={props.content}
           placeholder="content"
           onChange={props.savePostContentToState}

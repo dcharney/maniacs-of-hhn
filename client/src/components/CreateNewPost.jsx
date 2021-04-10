@@ -1,4 +1,5 @@
 import React from "react";
+
 const CreateNewPost = props => {
   return (
     <>
@@ -9,7 +10,7 @@ const CreateNewPost = props => {
           type="text"
           onChange={props.savePostTitleToState}
           placeholder="Title"
-          size="39"
+          size="42"
           required
           ref={props.getTitle}
         ></input>
@@ -17,7 +18,7 @@ const CreateNewPost = props => {
         <br />
         <textarea
           onChange={props.savePostContentToState}
-          placeholder="Content"
+          placeholder="Ingredients"
           rows="8"
           cols="41"
           required
