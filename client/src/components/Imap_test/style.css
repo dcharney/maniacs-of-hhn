@@ -3,16 +3,19 @@
     border: solid 5px var(--tertiary);
     height: 65vh;
     overflow: hidden;
-    
+    position: relative;
 }
-
 
 #imap .img-container {
     height: 100%;
     width:100%;
-    /* position: absolute;
+    position: absolute;
     top: 0;
-    left: 0; */
+    left: 0;
+}
+
+#imap .map {
+    transform-origin: 0 0;
 }
 
 #imap img {
@@ -20,14 +23,13 @@
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
-    transform-origin: 0 0;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
     -o-user-drag: none;
     user-select: none;
 }
-/*
+
 #imap .map-ctrl {
     z-index: 999;
     position: absolute;
@@ -66,7 +68,7 @@
     display: flex;
     flex-direction: column;
 }
-
+/*
 #imap .collapsible {
     background-color: var(--dark);
     color: var(--light);
@@ -88,7 +90,8 @@
 
 #imap .map-icon {
     position: absolute;
-    top:2500px;
-    left:2500px;
+    top:1000px;
+    left:1000px;
     z-index: 999;
+    /* background-color: blueviolet; */
 }

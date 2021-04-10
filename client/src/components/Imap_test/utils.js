@@ -4,6 +4,10 @@ class Map {
         this.mapEl =  doc.querySelector(".map");
         this.imgContainerEl = doc.querySelector(".img-container");
         this.imgEl = doc.querySelector("#imap-img");
+        this.recenterBttn = doc.getElementById("recenter");
+        this.zoomInBttn = doc.getElementById("zoomIn");
+        this.zoomOutBttn = doc.getElementById("zoomOut");
+
         this.imgDimensions = {
             height: this.imgEl.height,
             width: this.imgEl.width
@@ -12,13 +16,12 @@ class Map {
             height: this.imgContainerEl.clientHeight,
             width: this.imgContainerEl.clientWidth
         };
-        this.transformCenter = {};
+        this.transformCenter =  { x:0, y:0 };
         this.scale = 1;
-        this.origin = {};
         this.panning = false;
-        this.origin = {};
-        this.transformBounds = {};
-        // cursor = { x:0, y:0},
+        this.origin = { x:0, y:0 };
+        this.transformBounds = { right:0, left:0, top:0, bottom:0, scaleMin:0, scaleMax:0 };
+        this.cursor = { x:0, y:0 }
     };
 
     setTransform() {
@@ -64,7 +67,7 @@ class Map {
         const scaleMinWidth = this.divDimensions.width/this.imgDimensions.width;
         const scaleMinHeight = this.divDimensions.height/this.imgDimensions.height;
         let scaleMin;
-        if (scaleMinHeight>scaleMinWidth) {
+        if (this.scaleMinHeight>scaleMinWidth) {
             scaleMin = scaleMinHeight
         } else {scaleMin = scaleMinWidth};
         this.transformBounds = {
@@ -79,12 +82,18 @@ class Map {
         this.imgContainerEl.addEventListener('mousemove', this.mouseMove.bind(this));
         this.imgContainerEl.addEventListener('mouseup', this.mouseUp.bind(this));
         this.imgContainerEl.addEventListener('mouseleave', this.mouseLeave.bind(this));
+        this.imgContainerEl.addEventListener('wheel', this.wheel.bind(this));
+
+        this.recenterBttn.addEventListener('click', this.recenter.bind(this));
+        this.zoomInBttn.addEventListener('click', this.zoom.bind(this));
+        this.zoomOutBttn.addEventListener('click', this.zoom.bind(this));
     }
 
     init () {
         if (this) {
+            this.updateBounds();
             this.centerImage();
-            console.log(this.imgDimensions);
+            // console.log(this.imgDimensions);
             this.setZoomLimits();
             this.addEventListeners();
         };
@@ -92,7 +101,7 @@ class Map {
 
     mouseDown(e) {
         if (e.target.tagName !== "IMG") {return}
-        this.imgEl.style.transition = 'default';
+        this.mapEl.style.transition = 'default';
         this.panning = true;
         this.cursor = { 
             x:e.clientX-this.transformCenter.x, 
@@ -129,10 +138,54 @@ class Map {
         this.setTransform();
     }
 
-    sayHello() {
-        return this.panning;
+    wheel(e) {
+        // if (e.target.tagName !== "IMG") {return}
+        this.mapEl.style.transition = 'default';
+        this.cursor = { 
+            x:(e.clientX-this.transformCenter.x)/this.scale, 
+            y:(e.clientY-this.transformCenter.y)/this.scale 
+        };
+        (e.deltaY>0) ? (this.scale/=1.02) : (this.scale*=1.02);
+        this.scale = Math.min(Math.max(this.transformBounds.scaleMin,this.scale), this.transformBounds.scaleMax);
+        this.transformCenter = {
+            x: e.clientX - this.cursor.x*this.scale,
+            y: e.clientY - this.cursor.y*this.scale
+        };
+        this.setTransform();
+        // this.updateBounds();
+    }
+
+    recenter() {
+        this.mapEl.style.transition = `width 0.5s, height 0.5s, transform 0.5s`;
+        this.centerImage();
+    }
+
+    zoom(e) {
+        const cmd = e.target.closest("button").id;
+        // set zoom center to center of div
+        this.cursor = { 
+            x:(this.divDimensions.width/2-this.transformCenter.x)/this.scale, 
+            y:(this.divDimensions.height/2-this.transformCenter.y)/this.scale 
+        };
+        switch(cmd) {
+            case "zoomIn":
+                this.scale*=1.5;
+                break;
+            case "zoomOut":
+                this.scale/=1.5;
+                break;
+            default:
+                break;
+        };
+        this.scale = Math.min(Math.max(this.transformBounds.scaleMin,this.scale), this.transformBounds.scaleMax);
+        this.transformCenter = {
+            x: this.divDimensions.width/2 - this.cursor.x*this.scale,
+            y: this.divDimensions.height/2 - this.cursor.y*this.scale
+        };
+        this.mapEl.style.transition = `width 0.5s, height 0.5s, transform 0.5s`;
+        this.setTransform();
+        this.updateBounds();
     }
 }
 
-// export default new MapUtils();
 module.exports = Map;

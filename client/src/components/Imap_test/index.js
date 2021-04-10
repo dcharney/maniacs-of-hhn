@@ -8,7 +8,7 @@ import Map from './utils';
 
 const InteractiveMap = () => {
     const inputRef = useRef(null);
-    const [imgSrc, setImgSrc] = useState('https://picsum.photos/id/155/5000');
+    const [imgSrc, setImgSrc] = useState('https://picsum.photos/id/155/2000');
     const [ map, setNewMap ] = useState({});
     useEffect(() => {
         setTimeout(() => {
@@ -20,24 +20,29 @@ const InteractiveMap = () => {
         
     },[inputRef]);
 
-
     return (
         <div id="imap" className="frame">
-            {/* <div onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} onMouseLeave={mouseLeave}className="img-container" > */}
             <div className="img-container">
-                    <div className="map">
-                        <img ref={inputRef} src={imgSrc} id="imap-img" alt="interactive map" ></img>
-                        <div className="map-icon">
-                            <Link to="/" href="#"><GiSpookyHouse size={72}/></Link>
-                        </div>
+                <div className="map">
+                    <img ref={inputRef} src={imgSrc} id="imap-img" alt="interactive map" ></img>
+                    <div className="map-icon">
+                        <Link to="/" href="#"><GiSpookyHouse size={72}/></Link>
                     </div>
+                </div>
             </div>
-            
+            <div className="map-ctrl">
+                <button id="recenter"><RiFocus3Line /></button>
+                <div className="zoom-ctrl">
+                    <button id="zoomIn">
+                        <FaPlus />
+                    </button>
+                    <button id="zoomOut">
+                        <FaMinus />
+                    </button>
+                </div>
+            </div>
         </div>
     );
 };
 
 export default InteractiveMap;
-
-// place img into container same size as img so pan and zoom features are tied to div instead of directly to img
-// place icons relative to img container so they scroll relative to image 
