@@ -12,80 +12,21 @@ const InteractiveMap = () => {
     const [ map, setNewMap ] = useState({});
     useEffect(() => {
         setTimeout(() => {
-            console.log("i give up")
             const el = document.getElementById("imap-img");
-            // console.log(el);
-            // if (el) {setNewMap(new Map(document))};
-            // console.log(document)
-            // console.log(document.getElementById("imap-img").height)
             let map = new Map(document);
             setNewMap(map);
-            console.log(el)
-            if (map.mapEl) {
-                // console.log(map.imgDimensions)};
-                map.imgLoad(el)
-            };
-        }, 100);
+            map.init();
+        }, 200);
         
     },[inputRef]);
-
-    // load data into map after first page render
-    // if (map.mapEl) {map.imgLoad()};
-    // // zoom and pan function
-    // let panning = false, 
-    //     transformCenter = { x:0, y:0},
-    //     origin = {},
-    //     transformBounds = {},
-    //     imgDimensions = {},
-    //     divDimensions = {},
-    //     cursor = { x:0, y:0},
-    //     scale = 1,
-    //     mapEl;
-
-    // const mouseUp = e => {
-    //     if (e.target.tagName !== "IMG") {return}
-    //     panning = false;
-    //     e.target.style.cursor = "grab";
-    //     // snap overscroll to bounds
-    //     if (transformCenter.x>transformBounds.left) {transformCenter.x=transformBounds.left}
-    //     if (transformCenter.x<transformBounds.right) {transformCenter.x=transformBounds.right}
-    //     if (transformCenter.y>transformBounds.top) {transformCenter.y=transformBounds.top}
-    //     if (transformCenter.y<transformBounds.bottom) {transformCenter.y=transformBounds.bottom}
-    //     setTransform();
-    // }
-
-    // const mouseMove = e => {
-    //     if (e.target.tagName !== "IMG") {return}
-    //     if (!panning) {
-    //         return;
-    //     };
-
-    //     transformCenter = {
-    //         x: e.clientX - cursor.x, 
-    //         y: e.clientY - cursor.y
-    //     };
-    //     setTransform();
-    // };
-
-    // const mouseLeave = e => {
-    //     if (e.target.tagName !== "IMG") {return}
-    //     panning = false;
-    //     e.target.style.cursor = "grab";
-    //     // snap overscroll to bounds
-    //     if (transformCenter.x>transformBounds.left) {transformCenter.x=transformBounds.left}
-    //     if (transformCenter.x<transformBounds.right) {transformCenter.x=transformBounds.right}
-    //     if (transformCenter.y>transformBounds.top) {transformCenter.y=transformBounds.top}
-    //     if (transformCenter.y<transformBounds.bottom) {transformCenter.y=transformBounds.bottom}
-    //     setTransform();
-    // }
 
 
     return (
         <div id="imap" className="frame">
             {/* <div onMouseDown={mouseDown} onMouseUp={mouseUp} onMouseMove={mouseMove} onMouseLeave={mouseLeave}className="img-container" > */}
-            <div onMouseDown={map.mouseDown} className="img-container">
+            <div className="img-container">
                     <div className="map">
-                        <img ref={inputRef} src={imgSrc} id="imap-img" alt="interactive map" onLoad={map.imgLoad} ></img>
+                        <img ref={inputRef} src={imgSrc} id="imap-img" alt="interactive map" ></img>
                         <div className="map-icon">
                             <Link to="/" href="#"><GiSpookyHouse size={72}/></Link>
                         </div>

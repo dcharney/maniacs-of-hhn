@@ -58,6 +58,7 @@ const InteractiveMap = () => {
     }
 
     const imgLoad = e => {
+        console.log(e.target.height)
         centerImg(e.target);
         // calculate max possible zoom out
         imgDimensions = {

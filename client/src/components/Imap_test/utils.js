@@ -2,18 +2,20 @@ class Map {
     // collect relevant constants
     constructor(doc) {
         this.mapEl =  doc.querySelector(".map");
+        this.imgContainerEl = doc.querySelector(".img-container");
+        this.imgEl = doc.querySelector("#imap-img");
         this.imgDimensions = {
-            height: doc.querySelector("#imap-img").height,
-            width: doc.querySelector("#imap-img").width
+            height: this.imgEl.height,
+            width: this.imgEl.width
         };
         this.divDimensions = {
-            height: doc.querySelector(".img-container").clientHeight,
-            width: doc.querySelector(".img-container").clientWidth
+            height: this.imgContainerEl.clientHeight,
+            width: this.imgContainerEl.clientWidth
         };
         this.transformCenter = {};
         this.scale = 1;
         this.origin = {};
-        // let panning = false,
+        this.panning = false;
         this.origin = {};
         this.transformBounds = {};
         // cursor = { x:0, y:0},
@@ -36,12 +38,16 @@ class Map {
             top: (this.origin.y+(this.imgDimensions.height*this.scale-this.divDimensions.height)/2),
             bottom: (this.origin.y-(this.imgDimensions.height*this.scale-this.divDimensions.height)/2)
         };
+        this.scrollSnap();
+    };
+
+    scrollSnap() {
         // snap overscroll to bounds
         if (this.transformCenter.x>this.transformBounds.left) {this.transformCenter.x=this.transformBounds.left}
         if (this.transformCenter.x<this.transformBounds.right) {this.transformCenter.x=this.transformBounds.right}
         if (this.transformCenter.y>this.transformBounds.top) {this.transformCenter.y=this.transformBounds.top}
         if (this.transformCenter.y<this.transformBounds.bottom) {this.transformCenter.y=this.transformBounds.bottom}
-    };
+    }
 
     centerImage() {
         this.updateBounds();
@@ -53,47 +59,79 @@ class Map {
         this.setTransform();
     }
 
-    imgLoad (el) {
-        // console.log(e.target);
+    setZoomLimits() {
+        // calculate max possible zoom out
+        const scaleMinWidth = this.divDimensions.width/this.imgDimensions.width;
+        const scaleMinHeight = this.divDimensions.height/this.imgDimensions.height;
+        let scaleMin;
+        if (scaleMinHeight>scaleMinWidth) {
+            scaleMin = scaleMinHeight
+        } else {scaleMin = scaleMinWidth};
+        this.transformBounds = {
+            ...this.transformBounds,
+            scaleMin,
+            scaleMax: 4
+        };
+    }
+
+    addEventListeners() {
+        this.imgContainerEl.addEventListener('mousedown', this.mouseDown.bind(this));
+        this.imgContainerEl.addEventListener('mousemove', this.mouseMove.bind(this));
+        this.imgContainerEl.addEventListener('mouseup', this.mouseUp.bind(this));
+        this.imgContainerEl.addEventListener('mouseleave', this.mouseLeave.bind(this));
+    }
+
+    init () {
         if (this) {
-            //now that image has loaded, update dimensions
-            this.imgDimensions = {
-                height: el.closest("#imap-img").height,
-                width: el.closest("#imap-img").width
-            };
-            this.divDimensions = {
-                height: el.closest(".img-container").clientHeight,
-                width: el.closest(".img-container").clientWidth
-            };
             this.centerImage();
             console.log(this.imgDimensions);
-            
-            // calculate max possible zoom out
-            const scaleMinWidth = this.divDimensions.width/this.imgDimensions.width;
-            const scaleMinHeight = this.divDimensions.height/this.imgDimensions.height;
-            let scaleMin;
-            if (scaleMinHeight>scaleMinWidth) {
-                scaleMin = scaleMinHeight
-            } else {scaleMin = scaleMinWidth};
-            this.transformBounds = {
-                ...this.transformBounds,
-                scaleMin,
-                scaleMax: 4
-            };
+            this.setZoomLimits();
+            this.addEventListeners();
         };
     };
 
-    mouseDown() {
-        // if (e.target.tagName !== "IMG") {return}
-        // e.target.style.transition = 'default';
-        // panning = true;
-        // cursor = { 
-        //     x:e.clientX-transformCenter.x, 
-        //     y:e.clientY-transformCenter.y 
-        // };
-        // e.target.style.cursor = "grabbing";
-        console.log('mouse down');
+    mouseDown(e) {
+        if (e.target.tagName !== "IMG") {return}
+        this.imgEl.style.transition = 'default';
+        this.panning = true;
+        this.cursor = { 
+            x:e.clientX-this.transformCenter.x, 
+            y:e.clientY-this.transformCenter.y 
+        };
+        this.imgEl.style.cursor = "grabbing";
     };
+
+    mouseMove(e) {
+        // if (e.target.tagName !== "IMG") {return}
+        if (!this.panning) {
+            return;
+        };
+
+        this.transformCenter = {
+            x: e.clientX - this.cursor.x, 
+            y: e.clientY - this.cursor.y
+        };
+        this.setTransform();
+    };
+
+    mouseUp() {
+        // if (e.target.tagName !== "IMG") {return}
+        this.panning = false;
+        this.imgEl.style.cursor = "grab";
+        this.scrollSnap();
+        this.setTransform();
+    };
+
+    mouseLeave() {
+        this.panning = false;
+        this.imgEl.style.cursor = "grab";
+        this.scrollSnap();
+        this.setTransform();
+    }
+
+    sayHello() {
+        return this.panning;
+    }
 }
 
 // export default new MapUtils();
