@@ -23,7 +23,7 @@ const InteractiveMap = () => {
             name: "GhostBusters!",
             location: {left:500, top:500}
         }
-]
+    ]
     useEffect(() => {
         setTimeout(() => {
             const el = document.getElementById("imap-img");
