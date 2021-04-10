@@ -20,3 +20,25 @@ export const QUERY_ME = gql`
     }
 `;
 
+export const QUERY_CATEGORIES = gql`
+    {
+        categories {
+            name
+        }
+    }
+`;
+
+export const QUERY_ATTRACTIONS_SHORT = gql`
+{
+    attractions {
+        name
+        imap {
+            top
+            left
+        }
+        category {
+            name
+        }
+      }
+}
+`;
