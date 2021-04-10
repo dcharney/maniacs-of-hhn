@@ -6,7 +6,6 @@
     position: relative;
 }
 
-
 #imap .img-container {
     height: 100%;
     width:100%;
@@ -16,11 +15,14 @@
 }
 
 #imap .map {
+    transform-origin: 0 0;
+}
+
+#imap img {
     cursor: grab;
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
-    transform-origin: 0 0;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
@@ -86,12 +88,16 @@
     box-shadow: 0 0 8px var(--light);
 }
 
- /* #imap .map {
-    z-index: 999;
+#imap .map-icon {
     position: absolute;
-    top: 0;
-    left: 0;
-    display: flex;
-    flex-direction: column;
-    cursor: pointer;
-} */
+    z-index: 999;
+}
+
+#imap .houses {  
+    color: var(--dark);
+    /* background-color: var(--dark); */
+}
+
+#imap .houses:hover {  
+    color: var(--accent);
+}
