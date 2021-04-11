@@ -136,7 +136,7 @@ const resolvers = {
         },
         addRating: async (parent, args, context) => {
             if(context.user){
-
+                return Rating.create(args);
             }
 
             throw new AuthenticationError('You need to be logged in.');
