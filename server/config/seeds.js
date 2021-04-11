@@ -1,9 +1,8 @@
 const db = require('./connection');
-const { Category, Attraction } = require('../models');
+const { Category, Attraction, Year, Park } = require('../models');
 
 db.once('open', async () => {
     await Category.deleteMany();
-
     const categories = await Category.insertMany([
         { name: 'Haunted Houses' },
         { name: 'Scare Zones' },
@@ -11,16 +10,31 @@ db.once('open', async () => {
         { name: 'Live Entertainment' },
         { name: 'Merchandise and Dining' }
     ]);
+    console.log('categories seeded');
 
+    await Year.deleteMany();
+    const years = await Year.insertMany([
+        { year: '2018' },
+        { year: '2019' },
+        { year: '2020' }
+    ]);
+    console.log('categories seeded');
+
+    await Park.deleteMany();
+    const parks = await Park.insertMany([
+        { park: 'Florida' },
+        { park: 'Hollywood' },
+        { park: 'Japan' },
+        { park: 'Singapore' }
+    ]);
     console.log('categories seeded');
 
     await Attraction.deleteMany();
-
     const attractions = await Attraction.insertMany([
         {
             name: 'House of 1000 Corpses',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 500,
@@ -29,8 +43,8 @@ db.once('open', async () => {
         },
         {
             name: 'Killer Klowns from Outer Space',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 800,
@@ -40,8 +54,8 @@ db.once('open', async () => {
         },
         {
             name: 'Depths of Fear',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 500,
@@ -51,8 +65,8 @@ db.once('open', async () => {
         },
         {
             name: 'Stranger Things',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 500,
@@ -62,8 +76,8 @@ db.once('open', async () => {
         },
         {
             name: 'Ghostbusters',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 1000,
@@ -73,8 +87,8 @@ db.once('open', async () => {
         },
         {
             name: 'Yeti: Terror of the Yukon',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 200,
@@ -84,8 +98,8 @@ db.once('open', async () => {
         },
         {
             name: 'Graveyard Games',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 500,
@@ -95,8 +109,8 @@ db.once('open', async () => {
         },
         {
             name: 'Nightingales: Blood Pit',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 700,
@@ -106,8 +120,8 @@ db.once('open', async () => {
         },
         {
             name: 'Universal Monsters',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 900,
@@ -117,8 +131,8 @@ db.once('open', async () => {
         },
         {
             name: 'Us',
-            location: 'Orlando',
-            year: '2019',
+            park: parks[0]._id,
+            year: years[1]._id,
             category: categories[0]._id,
             imap: {
                 top: 200,
@@ -127,7 +141,6 @@ db.once('open', async () => {
             
         }
     ])
-
     console.log('attractions seeded');
 
     process.exit();

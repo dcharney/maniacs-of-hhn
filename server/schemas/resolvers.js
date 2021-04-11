@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Attraction, Comment, Post, Rating, Category } = require('../models');
+const { User, Attraction, Comment, Post, Rating, Category, Year, Park } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -7,6 +7,14 @@ const resolvers = {
         // get all categories
         categories: async () => {
             return await Category.find();
+        },
+        // get all years
+        years: async () => {
+            return await Year.find();
+        },
+        // get all parks
+        parks: async () => {
+            return await Park.find();
         },
         // get all users
         users: async () => {
@@ -21,32 +29,28 @@ const resolvers = {
             }
             throw new AuthenticationError('Cannot find a user with this id!');
         },
-        attractions: async (parent, { category, name }) => {
+        attractions: async (parent, { category, name, year, park}) => {
             const params = {};
-
-            if (category) {
-                params.category = category;
-            }
-
             if (name) {
-                params.name = {
-                  $regex: name
-                };
+                params.name = { $regex: name };
             }
+            if (category) { params.category = category }
+            if (year) { params.year = year }
+            if (park) { params.park = park }
 
-            return await Attraction.find(params).populate('category');
+            return await Attraction.find(params)
+                .populate('category')
+                .populate('year')
+                .populate('park');
         },
-        attraction: async (parent, { id }) => {
-            const attractionData = await Attraction.findOne({ _id: id });
-            return attractionData;
+        attraction: async (parent, { _id }) => {
+            return await Attraction.findOne({ _id: _id });
         },
         posts: async (parent, args) => {
-            const postData = await Post.find();
-            return postData;
+            return await Post.find();
         },
-        post: async (parent, { id }) => {
-            const postData = await Post.findOne({ _id: id });
-            return postData;
+        post: async (parent, { _id }) => {
+            return await Post.findOne({ _id: _id });
         }
     },
     Mutation: {
@@ -69,6 +73,38 @@ const resolvers = {
 
             return { token, user }
         },
+        savePost: async (parent, { postId }, context) => {
+            if(context.user){
+                const postData = await Post.findById(postId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { favoritePost: postData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        saveAttraction: async (parent, {attractionId }, context) => {
+            if(context.user){
+                const attractionData = await Attraction.findById(attractionId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { favoritePost: attractionData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        addPostComment: async (parent, args, context) => {},
+        addAttractionComment: async (parent, args, context) => {},
+        addReply: async (parent, args, context) => {},
+        addRating: async (parent, args, context) => {}
     }
 };
 

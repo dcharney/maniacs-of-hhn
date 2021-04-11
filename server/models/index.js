@@ -3,6 +3,6 @@ const Attraction = require('./Attraction');
 const Post = require('./Post');
 const Rating = require('./Rating');
 const Comment = require('./Comment');
-const Category = require('./Category');
+const { Category, Year, Park } = require('./Category');
 
-module.exports = { User, Attraction, Post, Rating, Comment, Category };
+module.exports = { User, Attraction, Post, Rating, Comment, Category, Year, Park };
