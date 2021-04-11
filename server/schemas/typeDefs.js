@@ -6,6 +6,16 @@ const typeDefs = gql`
         name: String
     }
 
+    type Year {
+        _id: ID
+        year: String
+    }
+
+    type Park {
+        _id: ID
+        park: String
+    }
+
     type Imap {
         top: Int
         left: Int
@@ -23,8 +33,8 @@ const typeDefs = gql`
         _id: ID
         name: String
         logo: String
-        location: String
-        year: Int
+        park: Park
+        year: Year
         description: String
         imap: Imap
         comments: [Comment]
@@ -71,6 +81,8 @@ const typeDefs = gql`
 
     type Query {
         categories: [Category]
+        years: [Year]
+        parks: [Park]
         users: [User]
         me: User
         attractions(category: ID, name: String): [Attraction]
