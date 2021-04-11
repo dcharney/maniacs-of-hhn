@@ -32,7 +32,7 @@ function App() {
                 <div className="App">
                     <Header />
                     <div id='content'>
-                            <Slideshow />
+                    <Slideshow />
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />

@@ -10,8 +10,8 @@ section.slideshow div.slide-holder{
 }
 
 section.slideshow section.current-slide{
-  width: 600px;
-  height: 400px;
+  width: 400px;
+  height: 250px;
   margin: auto 10px;
 }
 
