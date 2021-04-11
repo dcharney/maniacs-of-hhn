@@ -11,6 +11,21 @@
 
 const { Schema, model } = require('mongoose');
 
+const imapSchema = new Schema(
+	{
+		top: {
+			type: Number,
+			required: true,
+			trim: true
+		},
+		left: {
+			type: Number,
+			required: true,
+			trim: true
+		}
+	}
+)
+
 const attractionSchema = new Schema(
 	{
 		name: {
@@ -20,15 +35,11 @@ const attractionSchema = new Schema(
 		},
 		logo: {
 			type: String,
-			required: true,
 			trim: true
 		},
 		location: {
 			type: String,
-		},
-		category: {
-			type: String,
-			trim: true
+			required:true
 		},
 		year: {
 			type: Number,
@@ -36,15 +47,20 @@ const attractionSchema = new Schema(
 		},
 		description: {
 			type: String,
-			required: true,
 			trim: true
 		},
+		imap: imapSchema,
 		comments: [
 			{
 				type: Schema.Types.ObjectId,
 				ref: 'Comment'
 			}
-		]
+		],
+		category: {
+			type: Schema.Types.ObjectId,
+			ref: 'Category',
+			required: true
+		}
 	}
 );
 

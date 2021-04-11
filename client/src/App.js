@@ -3,6 +3,7 @@ import React from 'react';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
+import Explore from './pages/Explore';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -28,9 +29,10 @@ function App() {
             <Router>
                 <div className="App">
                     <Header />
-                    <div className='container'>
+                    <div id='content'>
                         <Switch>
                             <Route exact path="/" component={Home} />
+                            <Route exact path="/explore" component={Explore} />
                         </Switch>
                     </div>
                     <Footer />

@@ -1,9 +1,13 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Attraction, Comment, Post, Rating } = require('../models');
+const { User, Attraction, Comment, Post, Rating, Category } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
     Query: {
+        // get all categories
+        categories: async () => {
+            return await Category.find();
+        },
         // get all users
         users: async () => {
             return User.find()
@@ -17,8 +21,20 @@ const resolvers = {
             }
             throw new AuthenticationError('Cannot find a user with this id!');
         },
-        attractions: async (parent, args) => {
-            return await Attraction.find();
+        attractions: async (parent, { category, name }) => {
+            const params = {};
+
+            if (category) {
+                params.category = category;
+            }
+
+            if (name) {
+                params.name = {
+                  $regex: name
+                };
+            }
+
+            return await Attraction.find(params).populate('category');
         },
         attraction: async (parent, { _id }) => {
             return await Attraction.findOne({ _id: _id });
