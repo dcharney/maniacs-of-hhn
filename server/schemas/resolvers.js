@@ -43,17 +43,14 @@ const resolvers = {
                 .populate('year')
                 .populate('park');
         },
-        attraction: async (parent, { id }) => {
-            const attractionData = await Attraction.findOne({ _id: id });
-            return attractionData;
+        attraction: async (parent, { _id }) => {
+            return await Attraction.findOne({ _id: _id });
         },
         posts: async (parent, args) => {
-            const postData = await Post.find();
-            return postData;
+            return await Post.find();
         },
-        post: async (parent, { id }) => {
-            const postData = await Post.findOne({ _id: id });
-            return postData;
+        post: async (parent, { _id }) => {
+            return await Post.findOne({ _id: _id });
         }
     },
     Mutation: {
@@ -76,6 +73,38 @@ const resolvers = {
 
             return { token, user }
         },
+        savePost: async (parent, { postId }, context) => {
+            if(context.user){
+                const postData = await Post.findById(postId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { favoritePost: postData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        saveAttraction: async (parent, {attractionId }, context) => {
+            if(context.user){
+                const attractionData = await Attraction.findById(attractionId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $addToSet: { favoritePost: attractionData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        addPostComment: async (parent, args, context) => {},
+        addAttractionComment: async (parent, args, context) => {},
+        addReply: async (parent, args, context) => {},
+        addRating: async (parent, args, context) => {}
     }
 };
 

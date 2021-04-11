@@ -94,8 +94,8 @@ const typeDefs = gql`
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        savePost(postId: ID!) : User
-        saveAttraction(attractionId: ID!) : User
+        savePost(postId: String) : User
+        saveAttraction(attractionId: String) : User
         addPostComment(username: String!, commentBody: String!, createdAt: String) : Post
         addAttractionComment(username: String!, commentBody: String!, createdAt: String) : Attraction
         addReply(username: String!, replyBody: String!, createdAt: String) : Comment
