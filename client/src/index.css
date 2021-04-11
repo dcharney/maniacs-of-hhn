@@ -19,14 +19,11 @@ code {
     font-family: 'Galdeano', sans-serif;
 }
 
-nav {
-    background-color: var(--dark);
-}
-
 html {
     background-color: var(--primary);
 }
 
+<<<<<<< HEAD
 .logo {
     display: inline;
     margin-left: auto;
@@ -60,12 +57,15 @@ html {
     color: #afb7c0;
 }
 
+=======
+>>>>>>> 8ab7de283636b92529af3de57df257c7d6c047b6
 a {
     text-decoration: none;
-    padding-left: 70px;
-    padding-right: 20px;
 }
 
-.navbar-nav {
-    justify-content: center;
+#content {
+    min-height: 100%;
+	max-width: 100%;
+    background-color: var(--primary);
+    padding: 10px;
 }
