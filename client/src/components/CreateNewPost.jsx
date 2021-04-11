@@ -5,7 +5,7 @@ const CreateNewPost = props => {
     <>
     <section className="create-post">
       <form onSubmit={props.savePost}>
-        <h1>Create New Post</h1>
+        <h1>New Recipe</h1>
         <input
           type="text"
           onChange={props.savePostTitleToState}
@@ -27,7 +27,7 @@ const CreateNewPost = props => {
         <br />
         <br />
         <section className="button-wrapper">
-        <button className="button">Save Post</button></section>
+        <button className="button">Submit Recipe</button></section>
       </form>
       </section>
     </>

@@ -82,9 +82,9 @@ a {
 .all-post {
     margin: 90px;
     color: rgb(209, 9, 9);
-    border: 1px solid black;
+    /* border: 1px solid black; */
     text-align: center;
-    background-color: #2E3638;
+    /* background-color: #2E3638; */
 }
 
 .no-post{
@@ -93,6 +93,7 @@ a {
     margin: 90px;
     color: rgb(209, 9, 9);
     text-align: center;
+    background-color: #2E3638;
 }
 
 .button {

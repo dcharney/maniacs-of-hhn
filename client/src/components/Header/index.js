@@ -10,7 +10,7 @@ const Header = () => {
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
             <div className="container-fluid">
-                <a className="navbar-brand" href="#"><img className="logo" src={logo} alt="logo..." /></a>
+            <a className="navbar-brand" href="/"><img className="logo" src={logo} alt="logo..." /></a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 </button>
                 <div className="collapse navbar-collapse" id="navbarSupportedContent">
@@ -22,9 +22,24 @@ const Header = () => {
                             <Link to="explore" className="nav-link px-5" href="#">EXPLORE</Link>
                         </li>
                         <li className="nav-item dropdrown">
+                            <Link className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                FanContent
+                            </Link>
+                            <div className="dropdown-menu" aria-labelledby="navbarDropdown">
+                                <Link to="fan" className="dropdown-item" href="#">Recipies</Link>
+                                <Link to="cost" className="dropdown-item" href="#">Costume</Link>
+                            </div>
+                        </li>
+                        {/* <li className="nav-item dropdrown">
                             <Link to="fan"class="nav-link dropdown-toggle" href="FANCONTENT" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fan Content</Link>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown"></div>
                             <Link to="cost" class="dropdown-item" href="#">Costume</Link>
+                        </li> */}
+                        <li className="nav-item">
+                            <Link to="fan" className="nav-link px-5" href="#">RECIPES</Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="cost" className="nav-link px-5" href="#">Costume</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="store" className="nav-link px-5" href="#">STORE</Link>
