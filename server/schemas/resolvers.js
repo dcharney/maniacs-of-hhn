@@ -94,10 +94,53 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in.');
         },
-        addPostComment: async (parent, args, context) => {},
-        addAttractionComment: async (parent, args, context) => {},
-        addReply: async (parent, args, context) => {},
-        addRating: async (parent, args, context) => {}
+        addPostComment: async (parent, args, context) => {
+            if(context.user) {
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
+
+                return await Post.findByIdAndUpdate(
+                    { _id: args.postId },
+                    { $push: { comments: comment._id } },
+                    { new: true }
+                );
+
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addAttractionComment: async (parent, args, context) => {
+            if(context.user) {
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
+
+                return await Attraction.findByIdAndUpdate(
+                    { _id: args.attractionId },
+                    { $push: { comments: comment._id } },
+                    { new: true }
+                );
+
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addReply: async (parent, args, context) => {
+            if(context.user){
+                return await Comment.findOneAndUpdate(
+                    { _id: args.commentId },
+                    { $push: { replies: { replyBody: args.replyBody, username: context.user.username } } },
+                    { new: true, runValidators: true }
+                );
+
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        addRating: async (parent, args, context) => {
+            if(context.user){
+
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        }
     }
 };
 
