@@ -6,7 +6,6 @@
     position: relative;
 }
 
-
 #imap .img-container {
     height: 100%;
     width:100%;
@@ -15,12 +14,15 @@
     left: 0;
 }
 
+#imap .map {
+    transform-origin: 0 0;
+}
+
 #imap img {
     cursor: grab;
     min-width: 100%;
     min-height: 100%;
     z-index: -1;
-    transform-origin: 0 0;
     -webkit-user-drag: none;
     -khtml-user-drag: none;
     -moz-user-drag: none;
@@ -84,4 +86,18 @@
 
 #imap .collapsible:hover {
     box-shadow: 0 0 8px var(--light);
+}
+
+#imap .map-icon {
+    position: absolute;
+    z-index: 999;
+}
+
+#imap .houses {  
+    color: var(--dark);
+    /* background-color: var(--dark); */
+}
+
+#imap .houses:hover {  
+    color: var(--accent);
 }

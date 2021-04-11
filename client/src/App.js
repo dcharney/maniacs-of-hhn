@@ -8,6 +8,7 @@ import Fan from './pages/FanContent';
 import CreateNewPost from './components/FanContent/CreateNewPost';
 import Posts from './components/FanContent/Post';
 import DisplayAllPosts from './components/FanContent/DisplayAllPost';
+import Chat from './components/ChatRoom';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -43,6 +44,8 @@ function App() {
                             <Route exact path="/newPost" component={CreateNewPost} />
                             <Route exact path="/allPost" component={DisplayAllPosts} />
                             <Route exact path="/post" component={Posts} />
+                            <Route exact path="/chat" component={Chat} />
+
                         </Switch>
                     </div>
                     <Footer />

@@ -20,3 +20,38 @@ export const QUERY_ME = gql`
     }
 `;
 
+export const QUERY_CATEGORIES = gql`
+    {
+        categories {
+            name
+        }
+    }
+`;
+export const QUERY_PARKS = gql`
+    {
+        parks {
+            park
+        }
+    }
+`;
+export const QUERY_YEARS = gql`
+    {
+        years {
+            year
+        }
+    }
+`;
+export const QUERY_ATTRACTIONS_SHORT = gql`
+{
+    attractions {
+        name
+        imap {
+            top
+            left
+        }
+        category { name }
+        year { year }
+        park { park }
+      }
+}
+`;
