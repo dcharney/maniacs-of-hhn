@@ -1,5 +1,5 @@
 import React from 'react';
-import DisplayAllPost from '../components/DisplayAllPost';
+import DisplayAllPost from '../components/FanContent/DisplayAllPost';
 
 
 

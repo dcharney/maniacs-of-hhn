@@ -1,4 +1,5 @@
 import React from "react";
+import './style.css';
 
 const Post = ({ title, content, editPost, id, deletePost }) => {
   return (

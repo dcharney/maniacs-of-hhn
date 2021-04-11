@@ -1,4 +1,6 @@
 import React from "react";
+import './style.css';
+
 const ModifyPost = (props) => {
   return (
     <><section className="create-post">

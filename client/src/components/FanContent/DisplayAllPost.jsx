@@ -2,6 +2,8 @@ import React, { useState, useRef } from "react";
 import CreateNewPost from "./CreateNewPost";
 import Post from "./Post";
 import ModifyPost from "./ModifyPost"
+import './style.css';
+
 const DisplayAllPosts = () => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
@@ -106,7 +108,7 @@ const DisplayAllPosts = () => {
       </section>
         </section>
       ) : (
-      <div><h1 className="allpost">Recipes</h1>
+      <div><h1 className="allpost">Fan Content</h1>
         <section className="all-post">
         {allPosts.map(eachPost => {
           return (
