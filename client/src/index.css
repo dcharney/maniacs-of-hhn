@@ -23,7 +23,6 @@ html {
     background-color: var(--primary);
 }
 
-<<<<<< HEAD
 .logo {
     display: inline;
     margin-left: auto;
@@ -56,7 +55,7 @@ html {
 #planner:hover {
     color: #afb7c0;
 }
->>>>>> 8ab7de283636b92529af3de57df257c7d6c047b6
+
 a {
     text-decoration: none;
 }
@@ -68,3 +67,16 @@ a {
     padding: 10px;
 }
 
+.navbar-nav {
+    justify-content: center;
+}
+
+/* RUMORS SECTION/PAGE START */
+.rumors {
+    margin: 0;
+    background-color: var(--primary);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+/* RUMORS SECTION/PAGE END */

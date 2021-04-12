@@ -23,7 +23,8 @@
   "dependencies": {
     "bootstrap": "^4.6.0",
     "if-env": "^1.0.4",
-    "react-bootstrap": "^1.5.2"
+    "react-bootstrap": "^1.5.2",
+    "react-twitter-widgets": "^1.10.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
