@@ -27,7 +27,7 @@ export const ADD_USER = gql`
 export const ADD_COMMENT = gql`
   mutation addPostComment($postId: String!,$commentBody: String!) {
     addPostComment(postId: $postId, commentBody: $commentBody) {
-      comment {
+      comments {
         _id
         username
         commentBody
