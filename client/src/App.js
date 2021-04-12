@@ -5,6 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
+import Attraction from './pages/Attraction';
 import CreateNewPost from './components/FanContent/CreateNewPost';
 import Posts from './components/FanContent/Post';
 import DisplayAllPosts from './components/FanContent/DisplayAllPost';
@@ -41,6 +42,7 @@ function App() {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />
+                            <Route exact path="/attraction/:id" component={Attraction} />
                             <Route exact path="/fan" component={Fan} />
                             <Route exact path="/newPost" component={CreateNewPost} />
                             <Route exact path="/allPost" component={DisplayAllPosts} />

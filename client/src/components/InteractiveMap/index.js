@@ -106,7 +106,7 @@ const InteractiveMap = () => {
                         <>
                         {filterAttractions().map(attraction => (
                             <div className="map-icon" key={attraction.name} style={attraction.imap} >
-                                <Link to={`/${attraction.name}`} href="#"><GiSpookyHouse className="houses" size={72} /></Link>
+                                <Link to={`/attraction/${attraction._id}`} ><GiSpookyHouse className="houses" size={72} /></Link>
                             </div>
                         ))}
                         </>
