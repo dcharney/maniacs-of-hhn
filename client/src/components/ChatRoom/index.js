@@ -1,5 +1,8 @@
 import React, { useRef, useState } from 'react';
 import './index.css';
+import Auth from "../../utils/auth";
+import { Link } from "react-router-dom";
+
 
 import firebase from 'firebase/app';
 import 'firebase/firestore';
@@ -28,44 +31,32 @@ const analytics = firebase.analytics();
 
 function Chat() {
 
-  const [user] = useAuthState(auth);
+  const [user] = Auth.loggedIn();
 
   return (
     <div className="Chat">
       <header>
         <h1>Maniacs Chat</h1>
-        <SignOut />
+        {/* <SignOut /> */}
       </header>
 
       <section>
-        {user ? <ChatRoom /> : <SignIn />}
+        {user ? <ChatRoom /> :
+          <Link to="/login">
+            ← Login
+          </Link>
+        }
       </section>
 
     </div>
   );
 }
 
-function SignIn() {
-
-  const signInWithGoogle = () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    auth.signInWithPopup(provider);
-  }
-
-  return (
-    <>
-      <button className="sign-in" onClick={signInWithGoogle}>Sign in with Google</button>
-      <p>Do not violate the community guidelines or you will be banned for life!</p>
-    </>
-  )
-
-}
-
-function SignOut() {
-  return auth.currentUser && (
-    <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
-  )
-}
+// function SignOut() {
+//   return auth.currentUser && (
+//     <button className="sign-out" onClick={() => auth.signOut()}>Sign Out</button>
+//   )
+// }
 
 
 function ChatRoom() {

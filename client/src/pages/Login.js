@@ -40,6 +40,7 @@ function Login(props) {
     } catch (e) {
       console.log(e)
     }
+
   };
 
   const handleChange = event => {
@@ -67,13 +68,10 @@ function Login(props) {
     const provider = new firebase.auth.GoogleAuthProvider();
     auth()
       .signInWithPopup(provider)
-      .then((result) => {
-        /** @type {firebase.auth.OAuthCredential} */
-        var credential = result.credential;
-        // Grab Google Access Token to access the Google API.
-        var token = credential.accessToken;
-        // The signed-in user info.
-        var user = result.user;
+      .then(() => {
+        //redirect to mycontent page
+        window.location.assign('/content');
+        
       }).catch((error) => {
         // if user exists with this email already but wasn't linked
         if (error.code === 'auth/account-exists-with-different-credential') {
@@ -95,14 +93,15 @@ function Login(props) {
                 return result.user.linkWithCredential(pendingCred);
               }).then(function() {
                 // Google account successfully linked to the existing Firebase user.
-                goToApp();
+                //redirect to mycontent page
+                window.location.assign('/content');
               });
               return;
             }
           });
         };
       });
-    }
+    };
 
     return (
         <main className="rumors">
