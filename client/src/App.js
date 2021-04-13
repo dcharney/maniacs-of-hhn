@@ -11,6 +11,12 @@ import Posts from './components/FanContent/Post';
 import DisplayAllPosts from './components/FanContent/DisplayAllPost';
 import Chat from './components/ChatRoom';
 import Rumors from './pages/Rumors';
+import MyContent from './pages/MyContent';
+import Login from './pages/Login';
+import Signup from './pages/Signup';
+
+//for testing only
+import UserInteraction from './components/UserInteraction';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -49,6 +55,12 @@ function App() {
                             <Route exact path="/post" component={Posts} />
                             <Route exact path="/chat" component={Chat} />
                             <Route exact path="/rumors" component={Rumors}/>
+                            <Route exact path="/content" component={MyContent}/>
+                            <Route exact path="/login" component={Login}/>
+                            <Route exact path="/signup" component={Signup}/>
+
+                            {/* for testing only */}
+                            <Route exact path="/userinter" component={UserInteraction}/>
                         </Switch>
                     </div>
                     <Footer />

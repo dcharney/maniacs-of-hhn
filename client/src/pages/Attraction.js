@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery } from '@apollo/react-hooks';
+import UserInteraction from '../components/UserInteraction';
 import AttractionCard from '../components/AttractionCard';
 
 import { QUERY_ATTRACTION } from "../utils/queries";
@@ -22,7 +23,7 @@ function Attraction() {
             {currentAttraction.year ? (
                 <div>
                     <AttractionCard currentAttraction={currentAttraction} />
-                    <p>user interaction component</p>
+                    <UserInteraction attraction={currentAttraction} />
                 </div>
             ) : (
                 <p> Loading... </p>
