@@ -1,5 +1,5 @@
 const db = require('./connection');
-const { Category, Attraction, Year, Park, Post, Comment } = require('../models');
+const { Category, Attraction, Year, Park, Post } = require('../models');
 const faker = require('faker');
 
 db.once('open', async () => {
