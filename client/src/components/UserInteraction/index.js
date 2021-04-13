@@ -6,7 +6,7 @@ import { QUERY_ATTRACTION_BY_ID, QUERY_POST_BY_ID } from "../../utils/queries";
 
 import Comment from './Comment';
 
-// accepts the query data of either depending if it's an attraction or post/recipe  
+// props should be query data of either an attraction or post/recipe
 function UserInteraction(props) {
     const loggedIn = Auth.loggedIn();
 
@@ -20,15 +20,18 @@ function UserInteraction(props) {
 
     // }, [])
 
-    // if query passed down is attraction or post prop then add their data to state variables
+    // if query data passed down is attraction or post prop then add their data to state variables
     if(props.post) {
         setPostId(props.post._id);
         setComments(props.post.comments);
+
+        console.log(comments);
     } else if(props.attraction) {
         setAttractionId(props.attraction._id);
         setComments(props.attraction.comments);
-    }
 
+        console.log(comments);
+    }
 
     return(
         <section className="user-interaction">

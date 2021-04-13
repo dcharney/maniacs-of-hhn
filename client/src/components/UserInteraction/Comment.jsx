@@ -6,7 +6,7 @@ import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations'
 import Reply from './Reply';
 
 
-function Comment(attractionId, postId) {
+function Comment(props) {
     // const targetId = '6074d217ce95c514596d1b4a';// <-- used for testing
     const [commentBody, setCommentBody] = useState({comment: '' })
     const [ addAttractionComment, { error }] = useMutation(ADD_ATTRACTION_COMMENT);
@@ -16,17 +16,17 @@ function Comment(attractionId, postId) {
     const handleFormSubmit = async event => {
         event.preventDefault();
 
-        console.log(attractionId);
-        console.log(postId);
+        console.log(props.attractionId);
+        console.log(props.postId);
 
       try {
         // decide which type of post the id belongs to and use correct mutation
-        if (attractionId) {
-            await addAttractionComment({ variables: { attractionId: attractionId, commentBody: commentBody.comment } })
+        if (props.attractionId) {
+            await addAttractionComment({ variables: { attractionId: props.attractionId, commentBody: commentBody.comment } })
             .then((res) => console.log(res));
             console.log('Comment added to Attraction Post');
-        } else if (postId) {
-            await addPostComment({ variables: { postId: postId, commentBody: commentBody.comment } });
+        } else if (props.postId) {
+            await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } });
             console.log('Comment added to User Post');
         }
         setCommentBody({comment: ''});
