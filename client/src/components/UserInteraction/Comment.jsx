@@ -23,14 +23,13 @@ function Comment(props) {
         // decide which type of post the id belongs to and use correct mutation
         if (props.attractionId) {
             await addAttractionComment({ variables: { attractionId: props.attractionId, commentBody: commentBody.comment } })
-            .then((res) => console.log(res));
-            console.log('Comment added to Attraction Post');
+            document.location.reload();
         } else if (props.postId) {
             await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } });
-            console.log('Comment added to User Post');
+            document.location.reload();
         }
-        setCommentBody({comment: ''});
-        event.target.reset();
+        // setCommentBody({comment: ''});
+        // event.target.reset();
       } catch (e) {
         console.log(e)
       }

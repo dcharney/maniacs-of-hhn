@@ -120,7 +120,7 @@ const resolvers = {
                     { _id: args.postId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                );
+                ).populate('comments');
 
             }
 
@@ -134,7 +134,7 @@ const resolvers = {
                     { _id: args.attractionId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                );
+                ).populate('comments');
 
             }
 

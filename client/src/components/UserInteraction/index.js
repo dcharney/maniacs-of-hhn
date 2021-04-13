@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
+import "./style.css";
 // import { useQuery } from '@apollo/react-hooks';
 // import { QUERY_ATTRACTION_BY_ID, QUERY_POST_BY_ID } from "../../utils/queries";
 
@@ -13,7 +14,7 @@ function UserInteraction(props) {
     // initialize vars
     const [ postId, setPostId ] = useState(null);
     const [ attractionId, setAttractionId ] = useState(null);
-    const [ comments, setComments ] = useState([]);
+    const [ comments, setComments ] = useState(null);
 
     // called only once when mounted
     useEffect(() => {
@@ -29,14 +30,34 @@ function UserInteraction(props) {
         }
     }, [props]);
 
+    // function formatDate(date) {
+    //     var time = Date(date).toString(); 
+    //     return `${time}`;
+    // }
     return(
         <section className="user-interaction">
-            {/* add for each (for comments in post (use postID)) */}
-            <div className="comments">
-            
-                <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button>
+            <div className="comment-list">
+                {/* for each comment add comment data */}
+                { comments ?
+                    comments.map((comment) => {
+
+                        // console.log(formatDate(comment.createdAt));
+
+                        return(
+                            <div key={comment._id} className="comments">
+                                <h5>{comment.commentBody}</h5>
+                                <p>{comment.username}</p>
+                                <p>{comment.createdAt}</p>
+
+                                <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button>
+                            </div>
+                        );
+                    })
+                :
+                    <div>No comments</div>
+                }
+                {/* end foreach */}
             </div>
-            {/* end foreach */}
 
             {/* only allow commenting when logged in */}
             {loggedIn ? 
