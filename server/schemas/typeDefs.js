@@ -89,6 +89,7 @@ const typeDefs = gql`
         attraction(_id: ID!): Attraction
         posts: [Post]
         post(_id: ID!): Post
+        comment(_id: ID!): Comment
     }
 
     type Mutation {

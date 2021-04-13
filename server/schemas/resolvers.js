@@ -51,6 +51,9 @@ const resolvers = {
         },
         post: async (parent, { _id }) => {
             return await Post.findOne({ _id: _id });
+        },
+        comment: async (parent, { _id }) => {
+            return await Comment.findOne({ _id: _id });
         }
     },
     Mutation: {
@@ -117,7 +120,7 @@ const resolvers = {
         },
         addAttractionComment: async (parent, args, context) => {
             if(context.user) {
-                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody });
 
                 return await Attraction.findByIdAndUpdate(
                     { _id: args.attractionId },

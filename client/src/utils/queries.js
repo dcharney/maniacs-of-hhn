@@ -55,3 +55,22 @@ export const QUERY_ATTRACTIONS_SHORT = gql`
       }
 }
 `;
+
+export const QUERY_ATTRACTION_BY_ID = gql`
+    query attraction($id: ID!) {
+        attraction(_id: $id) {
+            _id
+            name
+        }
+    }
+`;
+
+export const QUERY_POST_BY_ID = gql`
+    query post($id: ID!) {
+        post(_id: $id) {
+            _id
+            category
+            title
+        }
+    }
+`

@@ -8,11 +8,11 @@ function UserInteraction(postId) {
     const loggedIn = Auth.loggedIn();
 
     return(
-        <div className="user-interaction">
-            {/* add for each (for comments) */}
-            <section className="comments">
+        <section className="user-interaction">
+            {/* add for each (for comments in post (use postID)) */}
+            <div className="comments">
                 
-            </section>
+            </div>
             {/* end foreach */}
 
             {/* only allow commenting when logged in */}
@@ -23,7 +23,7 @@ function UserInteraction(postId) {
                     <Link to="/login">Add to the conversation by logging in</Link>
                 </div>
             }
-        </div>
+        </section>
     );
 }
 
