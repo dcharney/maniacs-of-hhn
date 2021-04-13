@@ -19,22 +19,19 @@ const Header = () => {
                             <Link to="/" className="nav-link px-5" href="#">HOME</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="explore" className="nav-link px-5" href="#">EXPLORE</Link>
+                            <Link to="/explore" className="nav-link px-5" href="#">EXPLORE</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="fan" className="nav-link px-5" href="#">FAN CONTENT</Link>
+                            <Link to="/fan" className="nav-link px-5" href="#">FAN CONTENT</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="store" className="nav-link px-5" href="#">STORE</Link>
+                            <Link to="/rumors" className="nav-link px-5" href="#">RUMORS</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="rumors" className="nav-link px-5" href="#">RUMORS</Link>
+                            <Link to="/chat" className="nav-link px-5" href="#">CHAT</Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="chat" className="nav-link px-5" href="#">CHAT</Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="content" className="nav-link px-5" id="planner" href="#">MY CONTENT</Link>
+                            <Link to="/content" className="nav-link px-5" id="planner" href="#">MY CONTENT</Link>
                         </li>
                     </ul>
                 </div>

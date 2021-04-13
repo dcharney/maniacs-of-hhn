@@ -2,7 +2,6 @@ import React from 'react';
 import './styles.css';
 
 const logo = require('./images/hhnlogo.png').default;
-const updates = require('./images/updates.png').default;
 
 const Info = () => {
 
