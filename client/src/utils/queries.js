@@ -58,15 +58,14 @@ export const QUERY_ATTRACTIONS_SHORT = gql`
 `;
 
 export const QUERY_ATTRACTION = gql`
-query getAttraction($attractionId: ID! ) {
-    attraction(_id: $attractionId) {
-        _id
-        name
-        logo
-        category { name }
-        year { year }
-        park { park }
-        description
+    query getAttraction($id: ID! ) {
+        attraction(_id: $id) {
+            name
+            logo
+            park { park }
+            year { year }
+            description
+            category { name }
+        }
     }
-}
 `;
