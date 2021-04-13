@@ -44,7 +44,10 @@ const resolvers = {
                 .populate('park');
         },
         attraction: async (parent, { _id }) => {
-            return await Attraction.findOne({ _id: _id });
+            return await Attraction.findOne({ _id: _id })
+                .populate('category')
+                .populate('year')
+                .populate('park');;
         },
         posts: async (parent, args) => {
             return await Post.find();

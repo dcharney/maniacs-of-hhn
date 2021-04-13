@@ -6,7 +6,7 @@ import DisplayAllPost from '../components/FanContent/DisplayAllPost';
 
 const Fan = () => {
     return (
-        <main>
+        <main id="fan-content">
 
             <DisplayAllPost />
 
