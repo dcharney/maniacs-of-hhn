@@ -23,6 +23,7 @@ html {
     background-color: var(--primary);
 }
 
+
 .logo {
     display: inline;
     margin-left: auto;
@@ -65,7 +66,9 @@ a {
 	max-width: 100%;
     background-color: var(--primary);
     padding: 10px;
+
 }
+
 
 .navbar-nav {
     justify-content: center;

@@ -5,9 +5,7 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
-import CreateNewPost from './components/FanContent/CreateNewPost';
-import Posts from './components/FanContent/Post';
-import DisplayAllPosts from './components/FanContent/DisplayAllPost';
+import Comment from './components/FanContent/Comment';
 import Chat from './components/ChatRoom';
 import Rumors from './pages/Rumors';
 
@@ -42,9 +40,7 @@ function App() {
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/fan" component={Fan} />
-                            <Route exact path="/newPost" component={CreateNewPost} />
-                            <Route exact path="/allPost" component={DisplayAllPosts} />
-                            <Route exact path="/post" component={Posts} />
+                            <Route exact path="/comment" component={Comment} />
                             <Route exact path="/chat" component={Chat} />
                             <Route exact path="/rumors" component={Rumors}/>
                         </Switch>
