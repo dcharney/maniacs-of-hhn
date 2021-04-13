@@ -23,40 +23,6 @@ html {
     background-color: var(--primary);
 }
 
-<<<<<< HEAD
-.logo {
-    display: inline;
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-.sticky-top {
-    padding: 0;
-}
-
-.navbar-brand {
-    padding-top: 0;
-    padding-bottom: 0;
-}
-
-.nav-link {
-    color: #FAF3F0;
-    font-family: 'Galdeano', sans-serif;
-    font-weight: 500;
-    font-size: 20px;
-}
-
-#planner {
-    color: #bf3f36;
-    font-family: 'Galdeano', sans-serif;
-    font-weight: 1000;
-    font-size: 20px;
-}
-
-#planner:hover {
-    color: #afb7c0;
-}
->>>>>> 8ab7de283636b92529af3de57df257c7d6c047b6
 a {
     text-decoration: none;
 }
@@ -67,4 +33,3 @@ a {
     background-color: var(--primary);
     padding: 10px;
 }
-

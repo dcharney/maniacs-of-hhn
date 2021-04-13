@@ -111,3 +111,8 @@
     margin-bottom: 20px;
     border-radius: 25px;
 }
+
+.btns {
+    float: right;
+    margin-top: -25px;
+}
