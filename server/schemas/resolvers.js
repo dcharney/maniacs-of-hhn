@@ -41,22 +41,27 @@ const resolvers = {
             return await Attraction.find(params)
                 .populate('category')
                 .populate('year')
-                .populate('park');
+                .populate('park')
+                .populate('comments');
         },
         attraction: async (parent, { _id }) => {
             return await Attraction.findOne({ _id: _id })
                 .populate('category')
                 .populate('year')
-                .populate('park');;
+                .populate('park')
+                .populate('comments');
         },
         posts: async (parent, args) => {
-            return await Post.find();
+            return await Post.find()
+                .populate('comments');
         },
         post: async (parent, { _id }) => {
-            return await Post.findOne({ _id: _id });
+            return await Post.findOne({ _id: _id })
+                .populate('comments');
         },
         comment: async (parent, { _id }) => {
-            return await Comment.findOne({ _id: _id });
+            return await Comment.findOne({ _id: _id })
+                .populate('replies');
         }
     },
     Mutation: {

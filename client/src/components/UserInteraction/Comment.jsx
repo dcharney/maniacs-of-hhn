@@ -3,7 +3,7 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations';
 
-import Reply from './Reply';
+//import Reply from './Reply';
 
 
 function Comment(props) {

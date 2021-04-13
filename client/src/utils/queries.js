@@ -76,7 +76,12 @@ query getAttraction($attractionId: ID! ) {
         year { year }
         park { park }
         description
-        comments
+        comments {
+            _id
+            username
+            commentBody
+            createdAt
+        }
     }
 }
 `;
