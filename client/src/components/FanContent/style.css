@@ -1,8 +1,8 @@
-.no-post{
+#fan-content .no-post{
     color: rgb(209, 9, 9);
 }
 
-.all-post {
+#fan-content .all-post {
     margin: 90px;
     color: rgb(209, 9, 9);
     /* border: 1px solid black; */
@@ -10,7 +10,7 @@
     /* background-color: #2E3638; */
 }
 
-.no-post{
+#fan-content .no-post{
     
     
     margin: 90px;
@@ -20,7 +20,7 @@
     border-radius: 25px;
 }
 
-.button {
+#fan-content .button {
     background-color: rgb(209, 9, 9);
     border: 2px solid grey;
     color: white;
@@ -33,19 +33,19 @@
     box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
 }
 
-.allpost {
+#fan-content .allpost {
     color: rgb(209, 9, 9);
     text-align: center;
 
 }
 
-.textArea {
+#fan-content .textArea {
     display: block;
     margin : 0 auto;
 
 }
 
-.create-post {
+#fan-content .create-post {
     margin: 90px;
     color: rgb(209, 9, 9);
     border: 1px solid black;
@@ -55,12 +55,12 @@
 }
 
 
-.TT {
+#fan-content .TT {
     width: 400px; height: 50px;
     
 }
 
-.DC {
+#fan-content .DC {
     width: 400px; height: 80px;
     
 
@@ -68,12 +68,12 @@
 
 
 
-.img-preview {
+#fan-content .img-preview {
     width: 100;
     height: 100;
 }
 
-.submit {
+#fan-content .submit {
     background-color: rgb(209, 9, 9);
     border: 2px solid grey;
     color: white;
@@ -87,24 +87,24 @@
 
 }
 
-.previewText {
+#fan-content .previewText {
     color: rgb(209, 9, 9);
 }
 
-.form {
+#fan-content .form {
     display: block;
     margin : 0 auto;
 
 }
 
-#content {
+#fan-content #content {
     padding-top: 1px;
     padding-left: 200px;
     padding-right: 20px;
     padding-bottom: 100px;
 }
 
-.post-container {
+#fan-content .post-container {
     
     background: #2E3638;
     padding: 20px;

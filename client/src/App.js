@@ -7,6 +7,7 @@ import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
 import Comment from './components/FanContent/Comment';
 import Chat from './components/ChatRoom';
+import Rumors from './pages/Rumors';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -41,7 +42,7 @@ function App() {
                             <Route exact path="/fan" component={Fan} />
                             <Route exact path="/comment" component={Comment} />
                             <Route exact path="/chat" component={Chat} />
-
+                            <Route exact path="/rumors" component={Rumors}/>
                         </Switch>
                     </div>
                     <Footer />

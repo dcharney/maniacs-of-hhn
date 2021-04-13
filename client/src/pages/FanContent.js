@@ -6,7 +6,7 @@ import FanContent from '../components/FanContent';
 
 const Fan = () => {
     return (
-        <main>
+        <main id="fan-content">
 
             
             <FanContent />
