@@ -1,5 +1,6 @@
 const db = require('./connection');
-const { Category, Attraction, Year, Park } = require('../models');
+const { Category, Attraction, Year, Park, Post, Comment } = require('../models');
+const faker = require('faker');
 
 db.once('open', async () => {
     await Category.deleteMany();
@@ -142,6 +143,33 @@ db.once('open', async () => {
         }
     ])
     console.log('attractions seeded');
+
+    let posts = [];
+    for (let i=0; i<20; i++){
+        let comments = [];
+        for(let x=0; x<Math.floor(Math.random() * 5); x++){
+            let comment = {
+                username: faker.internet.userName,
+                commentBody: faker.lorem.sentence,
+                createdAt: faker.date.recent
+            }
+            comments.push(comment);
+        }
+
+        let post = {
+            category: categories[Math.floor(Math.random() * categories.length)],
+            image: faker.image.image,
+            title: faker.lorem.word,
+            content: faker.lorem.paragraph,
+            comment: comments,
+            createdAt: faker.date.past
+        }
+        posts.push(post);
+    }
+
+    await Post.deleteMany();
+    Post.insertMany(posts);
+    console.log('posts seeded');
 
     process.exit();
 });
