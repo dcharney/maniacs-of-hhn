@@ -17,7 +17,7 @@ class Map {
             width: this.imgContainerEl.clientWidth
         };
         this.transformCenter =  { x:0, y:0 };
-        this.scale = 1;
+        this.scale = .3;
         this.panning = false;
         this.origin = { x:0, y:0 };
         this.transformBounds = { right:0, left:0, top:0, bottom:0, scaleMin:0, scaleMax:0 };
@@ -93,7 +93,6 @@ class Map {
         if (this) {
             this.updateBounds();
             this.centerImage();
-            // console.log(this.imgDimensions);
             this.setZoomLimits();
             this.addEventListeners();
         };
