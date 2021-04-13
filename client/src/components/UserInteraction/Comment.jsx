@@ -3,44 +3,30 @@ import { useMutation } from '@apollo/react-hooks';
 
 import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations';
 
-import { useQuery } from '@apollo/react-hooks';
-import { QUERY_ATTRACTION_BY_ID, QUERY_POST_BY_ID } from "../../utils/queries";
-
 import Reply from './Reply';
 
 
-function Comment() {
-    const targetId = '6074d217ce95c514596d1b4a';
+function Comment(attractionId, postId) {
+    // const targetId = '6074d217ce95c514596d1b4a';// <-- used for testing
     const [commentBody, setCommentBody] = useState({comment: '' })
     const [ addAttractionComment, { error }] = useMutation(ADD_ATTRACTION_COMMENT);
     const [ addPostComment, { err } ] = useMutation(ADD_POST_COMMENT);
-
-    const { data: attractionData } = useQuery(QUERY_ATTRACTION_BY_ID, { 
-        variables: {id: targetId}
-    });
-
-    const { data: postData } = useQuery(QUERY_POST_BY_ID, { 
-        variables: {id: targetId}
-    });
-
-    const post = postData?.post || null;
-    const attraction = attractionData?.attraction || null;
 
     // handle submit comment
     const handleFormSubmit = async event => {
         event.preventDefault();
 
-        console.log(attraction);
-        console.log(post);
+        console.log(attractionId);
+        console.log(postId);
 
       try {
         // decide which type of post the id belongs to and use correct mutation
-        if (attraction) {
-            await addAttractionComment({ variables: { attractionId: targetId, commentBody: commentBody.comment } })
+        if (attractionId) {
+            await addAttractionComment({ variables: { attractionId: attractionId, commentBody: commentBody.comment } })
             .then((res) => console.log(res));
             console.log('Comment added to Attraction Post');
-        } else if (post) {
-            await addPostComment({ variables: { postId: targetId, commentBody: commentBody.comment } });
+        } else if (postId) {
+            await addPostComment({ variables: { postId: postId, commentBody: commentBody.comment } });
             console.log('Comment added to User Post');
         }
         setCommentBody({comment: ''});
@@ -67,7 +53,6 @@ function Comment() {
 
             <div>
               <button type="submit">add comment</button>
-              <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button>
             </div>
             {
                 (error || err) ? 
