@@ -4,13 +4,14 @@ import './style.css';
 const FanContent = () => {
 
     const backendData = [
-        { title: "Grocery List", description: "Milk, Soup, Bread", createdat: "01-18-2021" },
-        { title: "Math Homework", description: "Remember to finish question 8-10 before monday", createdat: "12-01-2020" },
-        { title: "Call James", description: "Ask him about the company party.", createdat: "12-30-2020" }
+        { title: "Mango Inferno", description: "El Jimador Blanco tequila, mango and lime juices, yellow curry powder, agave nectar, salt, and topped with a jalapeño slice", createdat: "04-05-2021" },
+        { title: "Vampire’s Curse", description: "Captain Morgan spiced rum, fruit punch, sour mix", createdat: "04-01-2021" },
+        { title: "Loup-Garou", description: "Pussers British Navy rum, Cruzan Dark, pineapple juice, honey, chamomile tea, lemon juice, pimento bitters", createdat: "03-30-2021" },
+        { title: "Frozen Candy Corn (non-alcoholic)", description: "candy corn-flavored frozen beverage topped with whipped cream and sprinkles", createdat: "03-20-2021" },
       ]
     
       const noteRootStyle = {
-        border: "2px #0af solid",
+        border: "2px #BF3F36 solid",
         borderRadius: 9,
         margin: 20,
         backgroundColor: "#2E3638",
