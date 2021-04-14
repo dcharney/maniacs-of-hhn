@@ -44,6 +44,7 @@ export const QUERY_YEARS = gql`
 export const QUERY_ATTRACTIONS_SHORT = gql`
 {
     attractions {
+        _id
         name
         imap {
             top
@@ -54,4 +55,50 @@ export const QUERY_ATTRACTIONS_SHORT = gql`
         park { park }
       }
 }
+`;
+
+export const QUERY_POST_BY_ID = gql`
+    query post($id: ID!) {
+        post(_id: $id) {
+            _id
+            category
+            title
+            comments {
+                _id
+                username
+                commentBody
+                createdAt
+                replies {
+                    _id
+                    username
+                    replyBody
+                    createdAt
+                }
+            }
+        }
+    }
+`
+export const QUERY_ATTRACTION = gql`
+    query getAttraction($id: ID! ) {
+        attraction(_id: $id) {
+            _id
+            name
+            park { park }
+            year { year }
+            description
+            category { name }
+            comments {
+                _id
+                username
+                commentBody
+                createdAt
+                replies {
+                    _id
+                    username
+                    replyBody
+                    createdAt
+                }
+            }
+        }
+    }
 `;

@@ -89,6 +89,7 @@ const typeDefs = gql`
         attraction(_id: ID!): Attraction
         posts: [Post]
         post(_id: ID!): Post
+        comment(_id: ID!): Comment
     }
 
     type Mutation {
@@ -96,9 +97,9 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         savePost(postId: String) : User
         saveAttraction(attractionId: String) : User
-        addPostComment(username: String!, commentBody: String!, createdAt: String) : Post
-        addAttractionComment(username: String!, commentBody: String!, createdAt: String) : Attraction
-        addReply(username: String!, replyBody: String!, createdAt: String) : Comment
+        addPostComment(postId: String!, commentBody: String!) : Post
+        addAttractionComment(attractionId: String!, commentBody: String!) : Attraction
+        addReply(commentId: String!, replyBody: String!) : Comment
         addRating(username: String, attractionId: String, scareFactor: Float, crowdIndex: Float) : Rating
     }
 `;

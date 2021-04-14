@@ -1,0 +1,64 @@
+import React, { useState } from "react";
+import { useMutation } from '@apollo/react-hooks';
+import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations';
+
+
+
+function Comment(props) {
+    const [commentBody, setCommentBody] = useState({comment: '' })
+    const [ addAttractionComment, { error }] = useMutation(ADD_ATTRACTION_COMMENT);
+    const [ addPostComment, { err } ] = useMutation(ADD_POST_COMMENT);
+
+    // handle submit comment
+    const handleFormSubmit = async event => {
+        event.preventDefault();
+
+        console.log(props.attractionId);
+        console.log(props.postId);
+
+      try {
+        // decide which type of post the id belongs to and use correct mutation
+        if (props.attractionId) {
+            await addAttractionComment({ variables: { attractionId: props.attractionId, commentBody: commentBody.comment } })
+            document.location.reload();
+        } else if (props.postId) {
+            await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } });
+            document.location.reload();
+        }
+        // setCommentBody({comment: ''});
+        // event.target.reset();
+      } catch (e) {
+        console.log(e)
+      }
+    };
+  
+    const handleChange = event => {
+      const { name, value } = event.target;
+      setCommentBody({
+        ...commentBody,
+        [name]: value
+      });
+    };
+
+
+    return(
+        <form className="comment-form" onSubmit={handleFormSubmit}>
+            <div>
+              <textarea name="comment" onChange={handleChange} placeholder="Type comment.."></textarea>
+            </div>
+
+            <div>
+              <button type="submit" className="sendComment">send <i className="fas fa-paper-plane"></i></button>
+            </div>
+            {
+                (error || err) ? 
+                    <div>
+                        <p className="error-text" > Comment did not deliver </p>
+                    </div>
+                : null
+            }
+        </form>
+    )
+}
+
+export default Comment;
