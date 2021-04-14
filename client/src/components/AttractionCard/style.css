@@ -47,7 +47,8 @@
     color: var(--light);
 }
 .attraction-card #save-attraction:hover {
-    text-shadow: 0 0 10px var(--light);
+    /* color: var(--accent); */
+    box-shadow: 0 0 1px var(--light);
 }
 
 .attraction-card .title {

@@ -69,6 +69,7 @@ export const QUERY_POST_BY_ID = gql`
 export const QUERY_ATTRACTION = gql`
     query getAttraction($attractionId: ID! ) {
         attraction(_id: $attractionId) {
+            _id
             name
             park { park }
             year { year }

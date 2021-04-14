@@ -2,9 +2,13 @@ import React from 'react';
 import './style.css';
 import Auth from '../../utils/auth';
 import { FaPlus } from 'react-icons/fa';
+import { SAVE_ATTRACTION } from "../utils/queries";
+import { useMutation } from '@apollo/client';
+
 
 const AttractionCard = ({ currentAttraction }) => {
     const {
+        _id,
         name,
         logo,
         park,
@@ -15,6 +19,20 @@ const AttractionCard = ({ currentAttraction }) => {
     const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
     const currentYear = year.year;
     const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
+    const [ savedAttractionIds, setSavedAttractionIds ] = useState()
+    const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
+
+    const handleSaveAttraction = async (attractionId) => {
+        console.log(attractionId);
+        try {
+            await saveAttraction({
+                variables: { attraction: currentAttraction }
+            })
+            // setSavedAttractionIds([...savedAttractionIds, ])
+        } catch (err) {
+            console.log(err);
+        };
+    }
 
     return (
         <div className="attraction-card">
@@ -24,7 +42,9 @@ const AttractionCard = ({ currentAttraction }) => {
                 </div>
                 <div className="title-container">
                     {Auth.loggedIn() && (
-                        <button id="save-attraction">
+                        <button id="save-attraction"
+                            onClick={() => handleSaveAttraction(_id)}
+                        >
                             <FaPlus />
                         </button>
                     )}
