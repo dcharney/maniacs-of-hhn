@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_REPLY } from '../../utils/mutations';
 import Moment from 'react-moment';
+import Collapsible from 'react-collapsible';
+
 
 
 
@@ -50,16 +52,21 @@ function Reply(props) {
     return(
         <div>
             <div className="reply-list">
-                {/* for each reply add reply data */}
+                {/* map each reply add reply data */}
                 { replies ?
                     replies.map((reply) => {
                         const createdAt = parseInt(reply.createdAt);
                         const timestamp = new Date(createdAt);
                         return(
                             <div key={reply._id} className="replies">
-                                <h5>{reply.replyBody}</h5>
-                                <p>{reply.username}</p>
-                                <p><Moment fromNow>{timestamp}</Moment></p>
+                                <div className="reply">
+                                        <div className="user-info">
+                                            {reply.username}<p><Moment fromNow>{timestamp}</Moment></p>
+                                        </div>
+                                        <div className="reply-body">
+                                            <h5>{reply.replyBody}</h5>
+                                        </div>
+                                </div>
                                 {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
                             </div>
                         );
@@ -67,28 +74,29 @@ function Reply(props) {
                 :
                     <div>No replies</div>
                 }
-                {/* end foreach */}
             </div>
+            {props.loggedIn ? 
+                <Collapsible className="reply-form-collapse" trigger="add reply" triggerWhenOpen={<i className="fas fa-ban"></i>}>
+                    <form className="reply-form" onSubmit={handleFormSubmit}>
+                        <div>
+                          <textarea name="reply" onChange={handleChange} placeholder="Type reply.."></textarea>
+                        </div>
 
-            {props.loggedIn ?
-                <form className="reply-form" onSubmit={handleFormSubmit}>
-                    <div>
-                      <textarea name="reply" onChange={handleChange} placeholder="Type reply.."></textarea>
-                    </div>
-
-                    <div>
-                      <button type="submit">add reply</button>
-                    </div>
-                    {
-                        (error) ? 
-                            <div>
-                                <p className="error-text" > Reply did not deliver </p>
-                            </div>
-                        : null
-                    }
-                </form>
+                        <div>
+                          <button type="submit" className="sendComment">send <i className="fas fa-paper-plane"></i></button>
+                        </div>
+                        {
+                            (error) ? 
+                                <div>
+                                    <p className="error-text" > Reply did not deliver </p>
+                                </div>
+                            : null
+                        }
+                    </form>
+                </Collapsible>
             :
-                <div></div>
+                <div>
+                </div>
             }
         </div>
     )

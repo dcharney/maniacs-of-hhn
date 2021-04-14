@@ -48,7 +48,7 @@ function Comment(props) {
             </div>
 
             <div>
-              <button type="submit">add comment</button>
+              <button type="submit" className="sendComment">send <i className="fas fa-paper-plane"></i></button>
             </div>
             {
                 (error || err) ? 

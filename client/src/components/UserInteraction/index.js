@@ -36,39 +36,47 @@ function UserInteraction(props) {
 
     return(
         <section className="user-interaction">
-            <div className="comment-list">
-                {/* for each comment add comment data */}
-                { comments ?
-                    comments.map((comment) => {
-                        const createdAt = parseInt(comment.createdAt);
-                        const timestamp = new Date(createdAt);
-                        return(
-                            <div key={comment._id} className="comments">
-                                <h5>{comment.commentBody}</h5>
-                                <p>{comment.username}</p>
-                                <p><Moment fromNow>{timestamp}</Moment></p>
-                                <Collapsible trigger="Replies">
-                                    <Reply commentReplies={comment.replies} commentId={comment._id} loggedIn={loggedIn} />
-                                </Collapsible>
+            <Collapsible trigger="View Comments" triggerWhenOpen="Close">
+                <div className="comment-list">
+                    {/* map each comment add comment data */}
+                    { comments ?
+                        comments.map((comment) => {
+                            const createdAt = parseInt(comment.createdAt);
+                            const timestamp = new Date(createdAt);
+                            return(
+                                <div key={comment._id} className="comments">
+                                    <div className="comment">
+                                        <div className="user-info">
+                                            {comment.username}<p><Moment fromNow>{timestamp}</Moment></p>
+                                        </div>
+                                        <div className="comment-body">
+                                            <h5>{comment.commentBody}</h5>
+                                        </div>
+                                    </div>
+                                    <Collapsible className="reply-collapse" trigger="replies" triggerWhenOpen={<i className="fas fa-chevron-down"></i>}>
+                                        <Reply commentReplies={comment.replies} commentId={comment._id} loggedIn={loggedIn} />
+                                    </Collapsible>
 
-                                {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
-                            </div>
-                        );
-                    })
-                :
-                    <div>No comments</div>
-                }
-                {/* end foreach */}
-            </div>
-
-            {/* only allow commenting when logged in */}
-            {loggedIn ? 
-                <Comment postId={postId} attractionId={attractionId} />
-            :
-                <div>
-                    <Link to="/login">Add to the conversation by logging in</Link>
+                                    {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
+                                </div>
+                            );
+                        })
+                    :
+                        <div>No comments</div>
+                    }
+    
+                    {/* only allow commenting when logged in */}
+                    {loggedIn ? 
+                        <Collapsible trigger="add comment" triggerWhenOpen="cancel">
+                            <Comment postId={postId} attractionId={attractionId} />
+                        </Collapsible>
+                    :
+                        <div>
+                            <Link to="/login">Add to the conversation by logging in</Link>
+                        </div>
+                    }
                 </div>
-            }
+            </Collapsible>
         </section>
     );
 }

@@ -15,9 +15,6 @@ import MyContent from './pages/MyContent';
 import Login from './pages/Login';
 import Signup from './pages/Signup';
 
-//for testing only
-import UserInteraction from './components/UserInteraction';
-
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
@@ -58,9 +55,6 @@ function App() {
                             <Route exact path="/content" component={MyContent}/>
                             <Route exact path="/login" component={Login}/>
                             <Route exact path="/signup" component={Signup}/>
-
-                            {/* for testing only */}
-                            <Route exact path="/userinter" component={UserInteraction}/>
                         </Switch>
                     </div>
                     <Footer />

@@ -1,5 +1,149 @@
-.comment-list {
+/* .user-interaction .comment-list {
     max-height: 300px;
     overflow: scroll;
+    margin: 50px;
+} */
+
+/* COMMENT SECTION START */
+
+.user-interaction .Collapsible__trigger {
+    color: rgb(194, 194, 194);
+}
+.user-interaction .Collapsible__trigger:hover {
+    cursor: pointer;
+    color: white;
 }
 
+.user-interaction .comment-list {
+    padding: 1%;
+    margin-bottom: 1%;
+    display: flex;
+    flex-direction: column;
+    width: 50%;
+}
+
+.user-interaction .comment-list .comments {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-interaction .comment-list .comments:nth-child(odd) {
+    background-color: var(--dark);
+}
+
+.user-interaction .comment-list .comments .user-info, .user-interaction .comment-list .comments .comment-body {
+    padding: 10px;
+}
+
+.user-interaction .comment-list .comments .Collapsible .Collapsible__trigger {
+    padding: 10px;
+}
+
+
+.user-interaction .comment-list .comments .Collapsible .Collapsible__contentInner {
+    margin: 0 10% 0 10%;
+}
+
+
+.user-interaction .comment-list .comments .comment {
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-interaction .comment-list .comments .comment .comment-body {
+    padding: 10px;
+}
+/* COMMENT SECTION END */
+
+/* REPLY SECTION START */
+.user-interaction .reply-list {
+    display: flex;
+    flex-direction: column;
+    overflow-y: scroll;
+}
+
+.user-interaction .reply-list .replies {
+    background: #151717;
+}
+
+.user-interaction .reply-list .replies .reply {
+    margin: 0 10% 0 10%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.user-interaction .reply-list .replies .reply .reply-body{
+    padding: 10px;
+}
+
+.user-interaction .reply-form-collapse {
+    display: flex;
+    justify-content: center;
+}
+.user-interaction .Collapsible .Collapsible .Collapsible {
+    display: flex;
+    justify-content: center;
+    padding: 20px;
+}
+
+
+.user-interaction .Collapsible .Collapsible .Collapsible .Collapsible__contentInner {
+    margin: 0 !important;
+}
+/* REPLY SECTION END */
+
+.user-interaction textarea, input {
+    padding: .5%;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.user-interaction textarea:focus, input:focus {
+    outline: none;
+    border: 1px solid #3486eb;
+}
+
+.user-interaction textarea {
+    min-width: 40%;
+    min-height: 50px;
+}
+
+.user-interaction button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    text-decoration: none;
+    color: rgb(194, 194, 194);
+    font-size: 100%;
+    font-weight: bold;
+    transition: color .1s;
+    margin-left: 16px;
+}
+  
+.user-interaction button:hover {
+    background: none;
+    color: white;
+}
+
+
+
+
+
+
+.comment-form {
+    text-align: center;
+}
+
+
+
+.user-interaction .comments .user-info p {
+    font-size: 13px;
+    padding-left: 5px;
+}
+  
+.comment-list .meta {
+  font-size: 90%;
+  margin-bottom: .5%;
+  opacity: .6;
+}
