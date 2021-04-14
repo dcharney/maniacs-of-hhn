@@ -1,5 +1,5 @@
 .comment-list {
-    height: 500px;
+    max-height: 300px;
     overflow: scroll;
 }
 

@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
 import "./style.css";
+
+import Moment from 'react-moment';
+
 // import { useQuery } from '@apollo/react-hooks';
 // import { QUERY_ATTRACTION_BY_ID, QUERY_POST_BY_ID } from "../../utils/queries";
 
@@ -22,34 +25,28 @@ function UserInteraction(props) {
         if(props.post) {
             setPostId(props.post._id);
             setComments(props.post.comments);
-            return;
         } else if (props.attraction) {
             setAttractionId(props.attraction._id);
             setComments(props.attraction.comments);
-            return;
         }
     }, [props]);
 
-    // function formatDate(date) {
-    //     var time = Date(date).toString(); 
-    //     return `${time}`;
-    // }
+
+
     return(
         <section className="user-interaction">
             <div className="comment-list">
                 {/* for each comment add comment data */}
                 { comments ?
                     comments.map((comment) => {
-
-                        // console.log(formatDate(comment.createdAt));
-
+                        const createdAt = parseInt(comment.createdAt);
+                        const timestamp = new Date(createdAt);
                         return(
                             <div key={comment._id} className="comments">
                                 <h5>{comment.commentBody}</h5>
                                 <p>{comment.username}</p>
-                                <p>{comment.createdAt}</p>
-
-                                <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button>
+                                <p><Moment fromNow>{timestamp}</Moment></p>
+                                {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
                             </div>
                         );
                     })
