@@ -1,6 +1,7 @@
 import React from 'react';
 import './style.css';
-// import { FaPlus } from 'react-icons/fa';
+import Auth from '../../utils/auth';
+import { FaPlus } from 'react-icons/fa';
 
 const AttractionCard = ({ currentAttraction }) => {
     const {
@@ -13,7 +14,7 @@ const AttractionCard = ({ currentAttraction }) => {
     } = currentAttraction;
     const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
     const currentYear = year.year;
-    const currentName = name.toLowerCase().replace(/\s/g, "");
+    const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
 
     return (
         <div className="attraction-card">
@@ -22,11 +23,11 @@ const AttractionCard = ({ currentAttraction }) => {
                     <img src={require(`../../assets/attractions/${currentPark}/${currentYear}/${currentName}.jpg`).default}></img>
                 </div>
                 <div className="title-container">
-                    {/* <div className="save-attraction">
-                            <button id="zoomIn">
-                                <FaPlus />
-                            </button>
-                        </div> */}
+                    {Auth.loggedIn() && (
+                        <button id="save-attraction">
+                            <FaPlus />
+                        </button>
+                    )}
                     <div className="title">
                         <h1>{name}</h1>
                     </div>

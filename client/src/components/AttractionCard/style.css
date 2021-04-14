@@ -35,6 +35,19 @@
     flex-direction: column;
     justify-content: flex-end;
     padding-right: 10vw;
+    position: relative;
+}
+
+.attraction-card #save-attraction {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--dark);
+    border: none;
+    color: var(--light);
+}
+.attraction-card #save-attraction:hover {
+    text-shadow: 0 0 10px var(--light);
 }
 
 .attraction-card .title {

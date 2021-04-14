@@ -49,3 +49,16 @@ export const ADD_ATTRACTION_COMMENT = gql`
     }
   }
 `;
+
+export const SAVE_ATTRACTION = gql`
+  mutation saveAttraction($attractionId: String!,$commentBody: String!) {
+    addAttractionComment(attractionId: $attractionId, commentBody: $commentBody) {
+      comments {
+        _id
+        username
+        commentBody
+        createdAt
+      }
+    }
+  }
+`;
