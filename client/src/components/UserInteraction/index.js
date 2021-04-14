@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Auth from '../../utils/auth';
 import { Link } from "react-router-dom";
 import "./style.css";
-
+import Reply from './Reply';
+import Collapsible from 'react-collapsible';
 import Moment from 'react-moment';
 
 // import { useQuery } from '@apollo/react-hooks';
@@ -46,6 +47,10 @@ function UserInteraction(props) {
                                 <h5>{comment.commentBody}</h5>
                                 <p>{comment.username}</p>
                                 <p><Moment fromNow>{timestamp}</Moment></p>
+                                <Collapsible trigger="Replies">
+                                    <Reply commentReplies={comment.replies} commentId={comment._id} loggedIn={loggedIn} />
+                                </Collapsible>
+
                                 {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
                             </div>
                         );

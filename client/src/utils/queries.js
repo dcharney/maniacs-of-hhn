@@ -63,6 +63,18 @@ export const QUERY_POST_BY_ID = gql`
             _id
             category
             title
+            comments {
+                _id
+                username
+                commentBody
+                createdAt
+                replies {
+                    _id
+                    username
+                    replyBody
+                    createdAt
+                }
+            }
         }
     }
 `
@@ -80,6 +92,12 @@ export const QUERY_ATTRACTION = gql`
                 username
                 commentBody
                 createdAt
+                replies {
+                    _id
+                    username
+                    replyBody
+                    createdAt
+                }
             }
         }
     }

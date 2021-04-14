@@ -32,6 +32,12 @@ export const ADD_POST_COMMENT = gql`
         username
         commentBody
         createdAt
+        replies {
+          _id
+          username
+          replyBody
+          createdAt
+        }
       }
     }
   }
@@ -44,6 +50,25 @@ export const ADD_ATTRACTION_COMMENT = gql`
         _id
         username
         commentBody
+        createdAt
+        replies {
+          _id
+          username
+          replyBody
+          createdAt
+        }
+      }
+    }
+  }
+`;
+
+export const ADD_REPLY = gql`
+  mutation addReply($commentId: String!,$replyBody: String!) {
+    addReply(commentId: $commentId, replyBody: $replyBody) {
+      replies {
+        _id
+        username
+        replyBody
         createdAt
       }
     }

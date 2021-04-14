@@ -1,13 +1,10 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/react-hooks';
-
 import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations';
 
-//import Reply from './Reply';
 
 
 function Comment(props) {
-    // const targetId = '6074d217ce95c514596d1b4a';// <-- used for testing
     const [commentBody, setCommentBody] = useState({comment: '' })
     const [ addAttractionComment, { error }] = useMutation(ADD_ATTRACTION_COMMENT);
     const [ addPostComment, { err } ] = useMutation(ADD_POST_COMMENT);
