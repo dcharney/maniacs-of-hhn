@@ -4,7 +4,7 @@ import Header from './components/Header';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
-import Chat from './components/ChatRoom';
+import ChatRoom from './pages/Chat';
 
 import { ApolloProvider } from '@apollo/react-hooks';
 import ApolloClient from 'apollo-boost';
@@ -34,7 +34,7 @@ function App() {
                         <Switch>
                             <Route exact path="/" component={Home} />
                             <Route exact path="/explore" component={Explore} />
-                            <Route exact path="/chat" component={Chat} />
+                            <Route exact path="/chat" component={ChatRoom} />
                         </Switch>
                     </div>
                     <Footer />
