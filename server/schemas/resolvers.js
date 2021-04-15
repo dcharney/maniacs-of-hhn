@@ -19,12 +19,12 @@ const resolvers = {
         // get all users
         users: async () => {
             return User.find()
-            .select('-__v -password')
+            .select('-__v -password');
         },
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id})
-                    .select('-__v -password');
+                    .select('-__v -password').populate('savedAttractions');
                 return userData
             }
             throw new AuthenticationError('Cannot find a user with this id!');
@@ -99,13 +99,13 @@ const resolvers = {
             throw new AuthenticationError('You need to be logged in.');
         },
         saveAttraction: async (parent, {attractionId }, context) => {
-            if(context.user){
+            if(context.user) {
                 const attractionData = await Attraction.findById(attractionId);
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
-                    { $addToSet: { favoritePost: attractionData } },
+                    { $addToSet: { savedAttractions: attractionData } },
                     { new: true, runValidators: true } 
-                );
+                ).populate('savedAttractions');
 
                 return updatedUser;
             }

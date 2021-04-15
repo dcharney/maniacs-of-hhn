@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { useQuery, useMutation } from '@apollo/react-hooks';
+import { useQuery } from '@apollo/react-hooks';
 import UserInteraction from '../components/UserInteraction';
 import AttractionCard from '../components/AttractionCard';
 
-import { QUERY_ATTRACTION, SAVE_ATTRACTION } from "../utils/queries";
+import { QUERY_ATTRACTION } from "../utils/queries";
 
 function Attraction() {
     const { attractionId } = useParams();
     const [currentAttraction, setAttraction] = useState({});
     const { data } = useQuery(QUERY_ATTRACTION, { variables: { attractionId }});
     const attraction = data?.attraction || {};
+    console.log(data)
 
     useEffect(() => {
         if (attraction.year) {

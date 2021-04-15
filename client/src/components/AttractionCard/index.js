@@ -1,8 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import Auth from '../../utils/auth';
 import { FaPlus } from 'react-icons/fa';
-import { SAVE_ATTRACTION } from "../utils/queries";
+import { SAVE_ATTRACTION } from "../../utils/mutations";
 import { useMutation } from '@apollo/client';
 
 
@@ -10,7 +10,6 @@ const AttractionCard = ({ currentAttraction }) => {
     const {
         _id,
         name,
-        logo,
         park,
         year,
         description,
@@ -19,16 +18,15 @@ const AttractionCard = ({ currentAttraction }) => {
     const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
     const currentYear = year.year;
     const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
-    const [ savedAttractionIds, setSavedAttractionIds ] = useState()
+    const [ savedAttractionIds, setSavedAttractionIds ] = useState([])
     const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
 
     const handleSaveAttraction = async (attractionId) => {
-        console.log(attractionId);
         try {
             await saveAttraction({
-                variables: { attraction: currentAttraction }
+                variables: { attractionId: attractionId }
             })
-            // setSavedAttractionIds([...savedAttractionIds, ])
+            setSavedAttractionIds([...savedAttractionIds, ])
         } catch (err) {
             console.log(err);
         };
@@ -38,7 +36,7 @@ const AttractionCard = ({ currentAttraction }) => {
         <div className="attraction-card">
             <div className="header">
                 <div className="logo">
-                    <img src={require(`../../assets/attractions/${currentPark}/${currentYear}/${currentName}.jpg`).default}></img>
+                    <img alt="attraction logo" src={require(`../../assets/attractions/${currentPark}/${currentYear}/${currentName}.jpg`).default}></img>
                 </div>
                 <div className="title-container">
                     {Auth.loggedIn() && (
