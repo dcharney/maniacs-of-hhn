@@ -90,6 +90,7 @@ const typeDefs = gql`
         posts: [Post]
         post(_id: ID!): Post
         comment(_id: ID!): Comment
+        reply(_id: ID!): Reply
     }
 
     type Mutation {
@@ -102,6 +103,8 @@ const typeDefs = gql`
         addAttractionComment(attractionId: String!, commentBody: String!) : Comment
         addReply(commentId: String!, replyBody: String!) : Reply
         addRating(username: String, attractionId: String, scareFactor: Float, crowdIndex: Float) : Rating
+        deleteComment(commentId: ID!): Comment
+        deleteReply(replyId: ID!): Reply
     }
 `;
 

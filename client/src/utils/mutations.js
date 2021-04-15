@@ -92,3 +92,19 @@ export const REMOVE_ATTRACTION = gql`
     }
   }
 `;
+
+export const DELETE_COMMENT = gql`
+	mutation deleteComment ($commentId: ID!) {
+		deleteComment(commentId: $commentId) {
+			_id
+		}
+	}
+`;
+
+export const DELETE_REPLY = gql`
+	mutation deleteReply ($replyId: ID!) {
+		deleteReply(replyId: $replyId) {
+			_id
+		}
+	}
+`;

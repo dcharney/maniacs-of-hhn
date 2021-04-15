@@ -1,14 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useMutation } from '@apollo/react-hooks';
-import { ADD_REPLY } from '../../utils/mutations';
+import { ADD_REPLY, DELETE_REPLY } from '../../utils/mutations';
 import Moment from 'react-moment';
 import Collapsible from 'react-collapsible';
 
 function Reply(props) {
-    const [replyBody, setReplyBody] = useState({reply: '' })
-    const [ addReply, { error }] = useMutation(ADD_REPLY);
+    const [replyBody, setReplyBody] = useState({reply: '' });
     const [ replies, setReplies ] = useState(null);
 
+    const [ addReply, { error }] = useMutation(ADD_REPLY);
+    // const [ deleteReplyAction ] = useMutation(DELETE_REPLY);
 
     // called only once when mounted
     useEffect(() => {
@@ -48,12 +49,22 @@ function Reply(props) {
     };
 
     function updateReplies(newReply) {
+        console.log(newReply._id)
         setReplies([
             ...replies,
             newReply
         ]);
     }
 
+    // async function deleteReply(id) {
+    //     try {
+    //         console.log(id)
+    //         await deleteReplyAction({ variables: { replyId: id } });
+    //         //window.location.reload();
+    //     } catch (e) {
+    //         console.log(e)
+    //     }
+    // }
 
     return(
         <div>
@@ -72,6 +83,11 @@ function Reply(props) {
                                         <div className="reply-body">
                                             <h5>{reply.replyBody}</h5>
                                         </div>
+                                        {/* {reply.username === props.username ?
+                                            <button type="button" className="sendComment" onClick={()=> deleteReply(reply._id)} >delete <i className="fas fa-trash-alt"></i></button>
+                                        :   
+                                            null
+                                        } */}
                                 </div>
                                 {/* <button type="button" className="like-btn"><i className="fas fa-thumbs-up"></i></button> */}
                             </div>

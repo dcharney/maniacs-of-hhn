@@ -62,6 +62,9 @@ const resolvers = {
         comment: async (parent, { _id }) => {
             return await Comment.findOne({ _id: _id })
                 .populate('replies');
+        },
+        reply: async (parent, { _id }) => {
+            return await Reply.findOne({ _id: _id });
         }
     },
     Mutation: {
@@ -133,7 +136,7 @@ const resolvers = {
                     { _id: args.postId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                );
+                ).populate('comments');
 
                 return comment;
             }
@@ -148,7 +151,7 @@ const resolvers = {
                     { _id: args.attractionId },
                     { $push: { comments: comment } },
                     { new: true }
-                );
+                ).populate('comments');
 
                 return comment;
             }
@@ -163,7 +166,7 @@ const resolvers = {
                     { _id: args.commentId },
                     { $push: { replies: reply } },
                     { new: true, runValidators: true }
-                );
+                ).populate('replies');
 
                 return reply;
             }
@@ -176,6 +179,12 @@ const resolvers = {
             }
 
             throw new AuthenticationError('You need to be logged in.');
+        },
+        deleteComment: async (parent, args, context) => {
+			return Comment.deleteOne({_id: args.commentId});
+        },
+        deleteReply: async (parent, args, context) => {
+			return Reply.deleteOne({_id: args.replyId});
         }
     }
 };
