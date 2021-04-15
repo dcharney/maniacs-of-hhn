@@ -41,16 +41,27 @@ const resolvers = {
             return await Attraction.find(params)
                 .populate('category')
                 .populate('year')
-                .populate('park');
+                .populate('park')
+                .populate('comments');
         },
         attraction: async (parent, { _id }) => {
-            return await Attraction.findOne({ _id: _id });
+            return await Attraction.findOne({ _id: _id })
+                .populate('category')
+                .populate('year')
+                .populate('park')
+                .populate('comments');
         },
         posts: async (parent, args) => {
-            return await Post.find();
+            return await Post.find()
+                .populate('comments');
         },
         post: async (parent, { _id }) => {
-            return await Post.findOne({ _id: _id });
+            return await Post.findOne({ _id: _id })
+                .populate('comments');
+        },
+        comment: async (parent, { _id }) => {
+            return await Comment.findOne({ _id: _id })
+                .populate('replies');
         }
     },
     Mutation: {
@@ -101,10 +112,53 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in.');
         },
-        addPostComment: async (parent, args, context) => {},
-        addAttractionComment: async (parent, args, context) => {},
-        addReply: async (parent, args, context) => {},
-        addRating: async (parent, args, context) => {}
+        addPostComment: async (parent, args, context) => {
+            if(context.user) {
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
+
+                return await Post.findByIdAndUpdate(
+                    { _id: args.postId },
+                    { $push: { comments: comment._id } },
+                    { new: true }
+                ).populate('comments');
+
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addAttractionComment: async (parent, args, context) => {
+            if(context.user) {
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody });
+
+                return await Attraction.findByIdAndUpdate(
+                    { _id: args.attractionId },
+                    { $push: { comments: comment._id } },
+                    { new: true }
+                ).populate('comments');
+
+            }
+
+            throw new AuthenticationError('You need to be logged in!');
+        },
+        addReply: async (parent, args, context) => {
+            if(context.user){
+                return await Comment.findOneAndUpdate(
+                    { _id: args.commentId },
+                    { $push: { replies: { replyBody: args.replyBody, username: context.user.username } } },
+                    { new: true, runValidators: true }
+                );
+
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        addRating: async (parent, args, context) => {
+            if(context.user){
+                return Rating.create(args);
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        }
     }
 };
 
