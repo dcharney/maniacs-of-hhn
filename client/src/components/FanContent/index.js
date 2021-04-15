@@ -27,7 +27,7 @@ const FanContent = () => {
       }
     
       return (
-        <div style={{ width: 800 }}>
+        <div className="Inputinfo" style={{ width: 800 }}>
           {backendData.map(ele => 
             <div style={noteRootStyle}>
               <h3>{ele.title}</h3>
@@ -35,7 +35,7 @@ const FanContent = () => {
               <div className="btns">
               <small>{ele.createdat}</small>
               <button type="button" class="btn btn" onClick={handleRoute}><i class="fas fa-comment" aria-hidden="true"></i></button>
-              <button type="button" class="btn btn"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+              {/* <button type="button" class="btn btn"><i class="far fa-thumbs-up" aria-hidden="true"></i></button> */}
                 </div>
             </div>
           )}

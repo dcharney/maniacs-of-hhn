@@ -4,14 +4,14 @@ import React from "react";
 const Comment = (props) => {
     return (
         <>
-        <section className="create-post">
+        <section className="Commentpost">
           <form onSubmit={props.savePost}>
 
             <br />
             <br />
             <textarea
               onChange={props.savePostContentToState}
-              placeholder="Descriptions"
+              placeholder="Comment"
               rows="8"
               cols="41"
               required

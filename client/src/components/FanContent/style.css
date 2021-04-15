@@ -4,3 +4,19 @@
     float: right;
     margin-top: -25px;
 }
+
+.Commentpost {
+    margin: auto;
+    width: 20%;
+
+}
+
+.Inputinfo {
+    margin: auto;
+    width: 20%;
+}
+
+.Sbutton {
+    margin: left;
+    width: 20%;
+}
