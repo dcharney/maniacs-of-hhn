@@ -19,7 +19,6 @@ const replySchema = new Schema(
 		username: {
 			type: String,
 			required: true,
-			trim: true
 		},
 		replyBody: {
 			type: String,
@@ -53,5 +52,6 @@ const commentSchema = new Schema(
 );
 
 const Comment = model('Comment', commentSchema);
+const Reply = model('Reply', replySchema);
 
-module.exports = Comment;
+module.exports = {Comment, Reply};
