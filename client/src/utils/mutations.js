@@ -74,3 +74,27 @@ export const ADD_REPLY = gql`
     }
   }
 `;
+
+export const SAVE_ATTRACTION = gql`
+  mutation saveAttraction($attractionId: ID!) {
+    saveAttraction(attractionId: $attractionId) {
+      _id
+      username
+      savedAttractions {
+        _id
+      }
+    }
+  }
+`;
+
+export const REMOVE_ATTRACTION = gql`
+  mutation removeAttraction($attractionId: ID!) {
+    removeAttraction(attractionId: $attractionId) {
+      _id
+      username
+      savedAttractions {
+        _id
+      }
+    }
+  }
+`;

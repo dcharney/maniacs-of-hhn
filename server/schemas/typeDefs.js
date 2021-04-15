@@ -26,7 +26,7 @@ const typeDefs = gql`
         username: String
         email: String
         favoritePost: [Post]
-        favoriteAttraction: [Attraction]
+        savedAttractions: [Attraction]
     }
 
     type Attraction {
@@ -96,7 +96,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         savePost(postId: String) : User
-        saveAttraction(attractionId: String) : User
+        saveAttraction(attractionId: ID!) : User
+        removeAttraction( _id: ID!) : User
         addPostComment(postId: String!, commentBody: String!) : Post
         addAttractionComment(attractionId: String!, commentBody: String!) : Attraction
         addReply(commentId: String!, replyBody: String!) : Comment

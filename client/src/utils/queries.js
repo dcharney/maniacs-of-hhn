@@ -16,6 +16,7 @@ export const QUERY_ME = gql`
             _id
             username
             email
+            savedAttractions { _id }
         }
     }
 `;
@@ -79,8 +80,8 @@ export const QUERY_POST_BY_ID = gql`
     }
 `
 export const QUERY_ATTRACTION = gql`
-    query getAttraction($id: ID! ) {
-        attraction(_id: $id) {
+    query getAttraction($attractionId: ID! ) {
+        attraction(_id: $attractionId) {
             _id
             name
             park { park }

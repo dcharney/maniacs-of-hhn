@@ -1,11 +1,16 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './style.css';
-// import { FaPlus } from 'react-icons/fa';
+import Auth from '../../utils/auth';
+import { FaPlus, FaMinus } from 'react-icons/fa';
+import { useQuery, useMutation } from '@apollo/react-hooks';
+import { QUERY_ME } from '../../utils/queries';
+import { SAVE_ATTRACTION } from "../../utils/mutations";
+
 
 const AttractionCard = ({ currentAttraction }) => {
     const {
+        _id,
         name,
-        logo,
         park,
         year,
         description,
@@ -13,20 +18,55 @@ const AttractionCard = ({ currentAttraction }) => {
     } = currentAttraction;
     const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
     const currentYear = year.year;
-    const currentName = name.toLowerCase().replace(/\s/g, "");
+    const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
+
+    const { loading, data } = useQuery(QUERY_ME);
+    const myAttractions = data?.me.savedAttractions || [];
+
+    
+
+    const [ savedAttractionIds, setSavedAttractionIds ] = useState([]);
+    const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
+    
+    
+
+    useEffect(() => {
+        if (myAttractions.length) {
+            setSavedAttractionIds(myAttractions.map(attraction => {return attraction._id}));
+        }
+    }, [myAttractions.length]);
+    
+    if (loading) {
+        return <h2>LOADING...</h2>;
+    }
+
+    const handleSaveAttraction = async (attractionId) => {
+        try {
+            await saveAttraction({
+                variables: { attractionId: attractionId }
+            })
+            setSavedAttractionIds([...savedAttractionIds, ])
+        } catch (err) {
+            console.log(err);
+        };
+    }
 
     return (
         <div className="attraction-card">
             <div className="header">
                 <div className="logo">
-                    <img src={require(`../../assets/attractions/${currentPark}/${currentYear}/${currentName}.jpg`).default}></img>
+                    <img alt="attraction logo" src={require(`../../assets/attractions/${currentPark}/${currentYear}/${currentName}.jpg`).default}></img>
                 </div>
                 <div className="title-container">
-                    {/* <div className="save-attraction">
-                            <button id="zoomIn">
-                                <FaPlus />
-                            </button>
-                        </div> */}
+                    {Auth.loggedIn() && (
+                        <button id="save-attraction"
+                            onClick={() => handleSaveAttraction(_id)}
+                        >
+                            {savedAttractionIds?.some((savedAttractionId) => savedAttractionId === _id) ?
+                                <FaMinus /> : <FaPlus />
+                            }
+                        </button>
+                    )}
                     <div className="title">
                         <h1>{name}</h1>
                     </div>
