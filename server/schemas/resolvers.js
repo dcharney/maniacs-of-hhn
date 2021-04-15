@@ -116,12 +116,13 @@ const resolvers = {
             if(context.user) {
                 const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
 
-                return await Post.findByIdAndUpdate(
+                await Post.findByIdAndUpdate(
                     { _id: args.postId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                ).populate('comments');
+                );
 
+                return comment;
             }
 
             throw new AuthenticationError('You need to be logged in!');
@@ -130,24 +131,28 @@ const resolvers = {
             if(context.user) {
                 const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody });
 
-                return await Attraction.findByIdAndUpdate(
+                await Attraction.findByIdAndUpdate(
                     { _id: args.attractionId },
-                    { $push: { comments: comment._id } },
+                    { $push: { comments: comment } },
                     { new: true }
-                ).populate('comments');
+                );
 
+                return comment;
             }
 
             throw new AuthenticationError('You need to be logged in!');
         },
         addReply: async (parent, args, context) => {
+            const reply = await Reply.create({ replyBody: args.replyBody, username: context.user.username });
+
             if(context.user){
-                return await Comment.findOneAndUpdate(
+                await Comment.findOneAndUpdate(
                     { _id: args.commentId },
-                    { $push: { replies: { replyBody: args.replyBody, username: context.user.username } } },
+                    { $push: { replies: { reply } } },
                     { new: true, runValidators: true }
                 );
 
+                return reply;
             }
 
             throw new AuthenticationError('You need to be logged in.');

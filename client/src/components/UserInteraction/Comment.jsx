@@ -13,20 +13,26 @@ function Comment(props) {
     const handleFormSubmit = async event => {
         event.preventDefault();
 
-        console.log(props.attractionId);
-        console.log(props.postId);
-
       try {
         // decide which type of post the id belongs to and use correct mutation
         if (props.attractionId) {
             await addAttractionComment({ variables: { attractionId: props.attractionId, commentBody: commentBody.comment } })
-            document.location.reload();
+            .then((res) => {
+              // get new comment data and send back to parent to update comment section
+              const newComment = res.data.addAttractionComment;
+              props.addComment(newComment);
+            });
         } else if (props.postId) {
-            await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } });
-            document.location.reload();
+            await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } })
+            .then((res) => {
+              // get new comment data and send back to parent to update comment section
+              const newComment = res.data.addAttractionComment;
+              props.addComment(newComment);
+            });        
         }
-        // setCommentBody({comment: ''});
-        // event.target.reset();
+        // clear comment form
+        setCommentBody({comment: ''});
+        event.target.reset();
       } catch (e) {
         console.log(e)
       }

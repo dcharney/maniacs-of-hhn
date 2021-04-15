@@ -68,7 +68,7 @@ function UserInteraction(props) {
                     {/* only allow commenting when logged in */}
                     {loggedIn ? 
                         <Collapsible trigger="add comment" triggerWhenOpen="cancel">
-                            <Comment postId={postId} attractionId={attractionId} />
+                            <Comment postId={postId} attractionId={attractionId} addComment={(newComment) => {console.log(newComment)}} />
                         </Collapsible>
                     :
                         <div>

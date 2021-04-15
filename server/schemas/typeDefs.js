@@ -97,9 +97,9 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         savePost(postId: String) : User
         saveAttraction(attractionId: String) : User
-        addPostComment(postId: String!, commentBody: String!) : Post
-        addAttractionComment(attractionId: String!, commentBody: String!) : Attraction
-        addReply(commentId: String!, replyBody: String!) : Comment
+        addPostComment(postId: String!, commentBody: String!) : Comment
+        addAttractionComment(attractionId: String!, commentBody: String!) : Comment
+        addReply(commentId: String!, replyBody: String!) : Reply
         addRating(username: String, attractionId: String, scareFactor: Float, crowdIndex: Float) : Rating
     }
 `;
