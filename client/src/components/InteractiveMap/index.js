@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useState, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import './style.css';
 import { RiFocus3Line } from 'react-icons/ri';
@@ -14,7 +14,7 @@ const InteractiveMap = () => {
     const { data: categoryData } = useQuery(QUERY_CATEGORIES);
     const { data: yearData } = useQuery(QUERY_YEARS);
     const { data: parkData } = useQuery(QUERY_PARKS);
-    const { loading, data: attractionData } = useQuery(QUERY_ATTRACTIONS_SHORT);
+    const { data: attractionData } = useQuery(QUERY_ATTRACTIONS_SHORT);
 
     const categories = categoryData?.categories || [];
     const years = yearData?.years || [];
@@ -106,7 +106,7 @@ const InteractiveMap = () => {
                         <>
                         {filterAttractions().map(attraction => (
                             <div className="map-icon" key={attraction.name} style={attraction.imap} >
-                                <Link to={`/${attraction.name}`} href="#"><GiSpookyHouse className="houses" size={72} /></Link>
+                                <Link to={`/attraction/${attraction._id}`} ><GiSpookyHouse className="houses" size={72} /></Link>
                             </div>
                         ))}
                         </>

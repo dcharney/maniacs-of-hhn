@@ -41,16 +41,27 @@ const resolvers = {
             return await Attraction.find(params)
                 .populate('category')
                 .populate('year')
-                .populate('park');
+                .populate('park')
+                .populate('comments');
         },
         attraction: async (parent, { _id }) => {
-            return await Attraction.findOne({ _id: _id });
+            return await Attraction.findOne({ _id: _id })
+                .populate('category')
+                .populate('year')
+                .populate('park')
+                .populate('comments');
         },
         posts: async (parent, args) => {
-            return await Post.find();
+            return await Post.find()
+                .populate('comments');
         },
         post: async (parent, { _id }) => {
-            return await Post.findOne({ _id: _id });
+            return await Post.findOne({ _id: _id })
+                .populate('comments');
+        },
+        comment: async (parent, { _id }) => {
+            return await Comment.findOne({ _id: _id })
+                .populate('replies');
         }
     },
     Mutation: {
@@ -109,7 +120,7 @@ const resolvers = {
                     { _id: args.postId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                );
+                ).populate('comments');
 
             }
 
@@ -117,13 +128,13 @@ const resolvers = {
         },
         addAttractionComment: async (parent, args, context) => {
             if(context.user) {
-                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });
+                const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody });
 
                 return await Attraction.findByIdAndUpdate(
                     { _id: args.attractionId },
                     { $push: { comments: comment._id } },
                     { new: true }
-                );
+                ).populate('comments');
 
             }
 
