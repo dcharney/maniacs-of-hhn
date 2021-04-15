@@ -98,12 +98,40 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in.');
         },
+        unsavePost: async (parent, { postId }, context) => {
+            if(context.user){
+                const postData = await Post.findById(postId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { favoritePost: postData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
         saveAttraction: async (parent, {attractionId }, context) => {
             if(context.user){
                 const attractionData = await Attraction.findById(attractionId);
                 const updatedUser = await User.findOneAndUpdate(
                     { _id: context.user._id },
                     { $addToSet: { favoritePost: attractionData } },
+                    { new: true, runValidators: true } 
+                );
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
+        unsaveAttraction: async (parent, { attractionId }, context) => {
+            if(context.user){
+                const attractionData = await Attraction.findById(attractionId);
+                const updatedUser = await User.findOneAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { favoritePost: attractionData } },
                     { new: true, runValidators: true } 
                 );
 
