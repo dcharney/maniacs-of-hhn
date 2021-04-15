@@ -1,7 +1,10 @@
 import React from "react";
 import './style.css';
+import { useHistory } from "react-router-dom";
+
 
 const FanContent = () => {
+    const history = useHistory();
 
     const backendData = [
         { title: "Mango Inferno", description: "El Jimador Blanco tequila, mango and lime juices, yellow curry powder, agave nectar, salt, and topped with a jalapeño slice", createdat: "04-05-2021" },
@@ -18,17 +21,21 @@ const FanContent = () => {
         padding: 6,
 
       };
+
+    const handleRoute = () =>{ 
+        history.push("/Comment");
+      }
     
       return (
-        <div style={{ width: 800 }}>
+        <div className="Inputinfo" style={{ width: 800 }}>
           {backendData.map(ele => 
             <div style={noteRootStyle}>
               <h3>{ele.title}</h3>
               <p>{ele.description}</p>
               <div className="btns">
               <small>{ele.createdat}</small>
-              <button type="button" class="btn btn"><i class="fas fa-comment" aria-hidden="true"></i></button>
-              <button type="button" class="btn btn"><i class="far fa-thumbs-up" aria-hidden="true"></i></button>
+              <button type="button" class="btn btn" onClick={handleRoute}><i class="fas fa-comment" aria-hidden="true"></i></button>
+              {/* <button type="button" class="btn btn"><i class="far fa-thumbs-up" aria-hidden="true"></i></button> */}
                 </div>
             </div>
           )}
