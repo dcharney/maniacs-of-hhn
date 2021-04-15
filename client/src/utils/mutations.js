@@ -27,17 +27,15 @@ export const ADD_USER = gql`
 export const ADD_POST_COMMENT = gql`
   mutation addPostComment($postId: String!,$commentBody: String!) {
     addPostComment(postId: $postId, commentBody: $commentBody) {
-      comments {
+      _id
+      username
+      commentBody
+      createdAt
+      replies {
         _id
         username
-        commentBody
+        replyBody
         createdAt
-        replies {
-          _id
-          username
-          replyBody
-          createdAt
-        }
       }
     }
   }
@@ -46,17 +44,15 @@ export const ADD_POST_COMMENT = gql`
 export const ADD_ATTRACTION_COMMENT = gql`
   mutation addAttractionComment($attractionId: String!,$commentBody: String!) {
     addAttractionComment(attractionId: $attractionId, commentBody: $commentBody) {
-      comments {
+      _id
+      username
+      commentBody
+      createdAt
+      replies {
         _id
         username
-        commentBody
+        replyBody
         createdAt
-        replies {
-          _id
-          username
-          replyBody
-          createdAt
-        }
       }
     }
   }
@@ -65,12 +61,10 @@ export const ADD_ATTRACTION_COMMENT = gql`
 export const ADD_REPLY = gql`
   mutation addReply($commentId: String!,$replyBody: String!) {
     addReply(commentId: $commentId, replyBody: $replyBody) {
-      replies {
-        _id
-        username
-        replyBody
-        createdAt
-      }
+      _id
+      username
+      replyBody
+      createdAt
     }
   }
 `;
