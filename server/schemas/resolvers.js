@@ -1,5 +1,5 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Attraction, Comment, Post, Rating, Category, Year, Park } = require('../models');
+const { User, Attraction, Comment, Reply, Post, Rating, Category, Year, Park } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -148,7 +148,7 @@ const resolvers = {
             if(context.user){
                 await Comment.findOneAndUpdate(
                     { _id: args.commentId },
-                    { $push: { replies: { reply } } },
+                    { $push: { replies: reply } },
                     { new: true, runValidators: true }
                 );
 

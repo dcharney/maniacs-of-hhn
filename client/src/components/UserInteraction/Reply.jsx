@@ -4,10 +4,6 @@ import { ADD_REPLY } from '../../utils/mutations';
 import Moment from 'react-moment';
 import Collapsible from 'react-collapsible';
 
-
-
-
-
 function Reply(props) {
     const [replyBody, setReplyBody] = useState({reply: '' })
     const [ addReply, { error }] = useMutation(ADD_REPLY);
@@ -26,15 +22,18 @@ function Reply(props) {
     const handleFormSubmit = async event => {
         event.preventDefault();
 
-        console.log(props.commentId);
-
       try {
         if (props.commentId) {
             await addReply({ variables: { commentId: props.commentId, replyBody: replyBody.reply } })
-            document.location.reload();
+            .then((res) => {
+              // get new reply data and update reply section
+              const newReply = res.data.addReply;
+              updateReplies(newReply);
+            });
         }
-        // setReplyBody({reply: ''});
-        // event.target.reset();
+        // clear reply form
+        setReplyBody({reply: ''});
+        event.target.reset();
       } catch (e) {
         console.log(e)
       }
@@ -47,6 +46,13 @@ function Reply(props) {
         [name]: value
       });
     };
+
+    function updateReplies(newReply) {
+        setReplies([
+            ...replies,
+            newReply
+        ]);
+    }
 
 
     return(

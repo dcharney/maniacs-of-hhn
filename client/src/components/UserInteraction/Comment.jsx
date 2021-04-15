@@ -2,8 +2,6 @@ import React, { useState } from "react";
 import { useMutation } from '@apollo/react-hooks';
 import { ADD_POST_COMMENT, ADD_ATTRACTION_COMMENT } from '../../utils/mutations';
 
-
-
 function Comment(props) {
     const [commentBody, setCommentBody] = useState({comment: '' })
     const [ addAttractionComment, { error }] = useMutation(ADD_ATTRACTION_COMMENT);
@@ -26,7 +24,7 @@ function Comment(props) {
             await addPostComment({ variables: { postId: props.postId, commentBody: commentBody.comment } })
             .then((res) => {
               // get new comment data and send back to parent to update comment section
-              const newComment = res.data.addAttractionComment;
+              const newComment = res.data.addPostComment;
               props.addComment(newComment);
             });        
         }
