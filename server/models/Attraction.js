@@ -37,12 +37,14 @@ const attractionSchema = new Schema(
 			type: String,
 			trim: true
 		},
-		location: {
-			type: String,
-			required:true
+		park: {
+			type: Schema.Types.ObjectId,
+			ref: 'Park',
+			required: true
 		},
 		year: {
-			type: Number,
+			type: Schema.Types.ObjectId,
+			ref: 'Year',
 			required: true
 		},
 		description: {

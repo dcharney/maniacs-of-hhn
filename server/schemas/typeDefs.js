@@ -6,6 +6,16 @@ const typeDefs = gql`
         name: String
     }
 
+    type Year {
+        _id: ID
+        year: String
+    }
+
+    type Park {
+        _id: ID
+        park: String
+    }
+
     type Imap {
         top: Int
         left: Int
@@ -16,15 +26,15 @@ const typeDefs = gql`
         username: String
         email: String
         favoritePost: [Post]
-        favoriteAttraction: [Attraction]
+        savedAttractions: [Attraction]
     }
 
     type Attraction {
         _id: ID
         name: String
         logo: String
-        location: String
-        year: Int
+        park: Park
+        year: Year
         description: String
         imap: Imap
         comments: [Comment]
@@ -71,22 +81,26 @@ const typeDefs = gql`
 
     type Query {
         categories: [Category]
+        years: [Year]
+        parks: [Park]
         users: [User]
         me: User
         attractions(category: ID, name: String): [Attraction]
         attraction(_id: ID!): Attraction
         posts: [Post]
         post(_id: ID!): Post
+        comment(_id: ID!): Comment
     }
 
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        savePost(postId: ID!) : User
+        savePost(postId: String) : User
         saveAttraction(attractionId: ID!) : User
-        addPostComment(username: String!, commentBody: String!, createdAt: String) : Post
-        addAttractionComment(username: String!, commentBody: String!, createdAt: String) : Attraction
-        addReply(username: String!, replyBody: String!, createdAt: String) : Comment
+        removeAttraction( _id: ID!) : User
+        addPostComment(postId: String!, commentBody: String!) : Comment
+        addAttractionComment(attractionId: String!, commentBody: String!) : Comment
+        addReply(commentId: String!, replyBody: String!) : Reply
         addRating(username: String, attractionId: String, scareFactor: Float, crowdIndex: Float) : Rating
     }
 `;

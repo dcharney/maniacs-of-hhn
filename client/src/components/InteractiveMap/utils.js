@@ -93,7 +93,6 @@ class Map {
         if (this) {
             this.updateBounds();
             this.centerImage();
-            // console.log(this.imgDimensions);
             this.setZoomLimits();
             this.addEventListeners();
         };

@@ -1,11 +1,16 @@
 import React from 'react';
+import Auth from '../../utils/auth';
 import './style.css';
 import { Link } from 'react-router-dom';
 
 const logo = require('./logo.png').default;
 
 const Header = () => {
+    const loggedIn = Auth.loggedIn();
 
+    function signOut() {
+        Auth.logout();
+    }
 
     return (
         <nav className="navbar navbar-expand-lg navbar-dark sticky-top">
@@ -33,6 +38,12 @@ const Header = () => {
                         <li className="nav-item">
                             <Link to="/content" className="nav-link px-5" id="planner" href="#">MY CONTENT</Link>
                         </li>
+                        {loggedIn?
+                            <li className="nav-item">
+                                <div className="nav-link px-5" onClick={signOut}>SIGN OUT</div>
+                            </li>
+                            : null
+                        }
                     </ul>
                 </div>
             </div>
