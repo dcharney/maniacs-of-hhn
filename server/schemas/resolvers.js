@@ -112,6 +112,19 @@ const resolvers = {
 
             throw new AuthenticationError('You need to be logged in.');
         },
+        removeAttraction: async (parent, { _id }, context) => {
+            if(context.user) {
+                const updatedUser = await User.findByIdAndUpdate(
+                    { _id: context.user._id },
+                    { $pull: { savedAttractions: { _id: _id } } },
+                    { new: true } 
+                ).populate('savedAttractions');
+
+                return updatedUser;
+            }
+
+            throw new AuthenticationError('You need to be logged in.');
+        },
         addPostComment: async (parent, args, context) => {
             if(context.user) {
                 const comment = await Comment.create({ username: context.user.username, commentBody: args.commentBody, createdAt: args.createdAt });

@@ -11,7 +11,6 @@ function Attraction() {
     const [currentAttraction, setAttraction] = useState({});
     const { data } = useQuery(QUERY_ATTRACTION, { variables: { attractionId }});
     const attraction = data?.attraction || {};
-    console.log(data)
 
     useEffect(() => {
         if (attraction.year) {

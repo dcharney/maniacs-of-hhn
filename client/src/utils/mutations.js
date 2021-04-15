@@ -61,3 +61,15 @@ export const SAVE_ATTRACTION = gql`
     }
   }
 `;
+
+export const REMOVE_ATTRACTION = gql`
+  mutation removeAttraction($attractionId: ID!) {
+    removeAttraction(attractionId: $attractionId) {
+      _id
+      username
+      savedAttractions {
+        _id
+      }
+    }
+  }
+`;
