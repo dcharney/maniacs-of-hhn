@@ -1,11 +1,12 @@
-  .Chat {
+  #Chat .Chat {
     text-align: center;
-    max-width: 600px;
-    margin: 0 auto 100px auto;
+    margin: 0;
+    width: 20vw;
+    min-width: 400px;
   }
   
-  .Chat header {
-    background-color: #4b0303;
+  #Chat .Chat header {
+    background-color: #680000;
     height: 10vh;
     min-height: 50px;
     color: white;
@@ -20,35 +21,39 @@
     box-sizing: border-box;
   }
   
-  .Chat section {
+  #Chat .Chat section {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-end;
     background-color: rgb(0, 0, 0);
+    height: 55vh;
   }
   
-  .Chat main {
+  #Chat #main {
     padding: 10px;
-    height: 48vh;
-    margin: 10vh 0 10vh;
+    margin: 0;
     overflow-y: scroll;
+  }
+
+  #Chat {
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
+    justify-content: center;
   }
   
-  .Chat main::-webkit-scrollbar {
+  #Chat #main::-webkit-scrollbar {
     width: 0.25rem;
   }
   
-  .Chat main::-webkit-scrollbar-track {
+  #Chat #main::-webkit-scrollbar-track {
     background: #241e1e;
   }
   
-  .Chat main::-webkit-scrollbar-thumb {
+  #Chat #main::-webkit-scrollbar-thumb {
     background: #4b0303;
   }
   
-  .Chat form {
+  #Chat form {
     height: 10vh;
     bottom: 0;
     background-color: rgb(24, 23, 23);
@@ -58,13 +63,13 @@
     font-size: 1.5rem;
   }
   
-  .Chat form button {
+  #Chat form button {
     width: 20%;
     background-color: rgb(121, 21, 21);
   }
   
   
-  .Chat input {
+  #Chat input {
     line-height: 1.5;
     width: 100%;
     font-size: 1.5rem;
@@ -72,39 +77,38 @@
     color: white;
     outline: none;
     border: none;
-    padding: 0 10px;
   }
   
-  .Chat button {
+  #Chat button {
     background-color: #282c34;
     border: none;
     color: white;
-    padding: 15px 32px;
+    padding: 15px 10px;
     text-align: center;
     text-decoration: none;
     display: inline-block;
     cursor: pointer;
-    font-size: 1.25rem;
+    font-size: 1rem;
   }
   
-  .Chat button:disabled {
+  #Chat button:disabled {
     opacity: 0.5;
     cursor: not-allowed;
   }
   
-  .Chat .sign-in {
+  #Chat .sign-in {
     color: #282c34;
     background: white;
     max-width: 400px;
     margin: 0 auto;
   }
   
-  .Chat ul, .Chat li {
+  #Chat ul, li {
     text-align: left;
     list-style: none;
   }
   
-  .Chat p {
+  #Chat p {
     max-width: 500px;
     margin-bottom: 12px;
     line-height: 24px;
@@ -115,27 +119,28 @@
     text-align: center;
   }
   
-  .Chat .message {
+  #Chat .message {
     display: flex;
     align-items: center;
   }
   
   
-  .Chat .sent {
+  #Chat .sent {
     flex-direction: row-reverse;
+
   }
   
-  .Chat .sent p {
+  #Chat .sent p {
     color: white;
     background: #4b0303;
     align-self: flex-end;
   }
-  .Chat .received p {
+  #Chat .received p {
     background: #535353;
     color: black;
   }
 
-  .Chat .avatar {
+  #Chat .avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
