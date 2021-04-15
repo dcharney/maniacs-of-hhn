@@ -20,6 +20,18 @@ const userSchema = new Schema(
             required: true,
             minlength: 5
         },
+        favoritePost: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Post'
+            }
+        ],
+        savedAttractions: [
+            {
+                type: Schema.Types.ObjectId,
+                ref: 'Attraction'
+            }
+        ]   
     },
     // {
     //     toJSON: {

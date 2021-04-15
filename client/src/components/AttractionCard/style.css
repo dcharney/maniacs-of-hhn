@@ -1,0 +1,99 @@
+#attraction {
+    padding: 10px;
+    /* height: 48vh; */
+    margin: 2vh;
+    /* overflow-y: scroll; */
+}
+
+/* https://www.w3schools.com/howto/howto_js_rangeslider.asp */
+
+.attraction-card {
+    background-color: var(--secondary);
+}
+
+.attraction-card .header {
+    background-color: var(--dark);
+    display: flex;
+    justify-content: space-around;
+    padding: 10px;
+}
+
+.attraction-card .header .logo {
+    padding: 10px;
+    width: 33vw;
+    display: flex;
+    justify-content: center;
+}
+
+.attraction-card .header .logo img {
+    object-fit: contain;
+    max-width: 15vw;
+}
+
+.attraction-card .header .title-container {
+    width: 66vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding-right: 10vw;
+    position: relative;
+}
+
+.attraction-card #save-attraction {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background-color: var(--dark);
+    border: none;
+    color: var(--light);
+}
+.attraction-card #save-attraction:hover {
+    /* color: var(--accent); */
+    box-shadow: 0 0 1px var(--light);
+}
+
+.attraction-card .title {
+    height: 80%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding-right: 10vw;
+}
+
+.attraction-card .title h1 {
+    font-size: 50px;
+}
+
+.attraction-card .tags {
+    height: 20%;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.attraction-card .tag {
+    margin: 10px;
+}
+
+.attraction-card h3 {
+    font-size: 20px;
+    color: var(--tertiary);
+}
+
+.attraction-card .body {
+    background-color: var(--secondary);
+    padding: 5%;
+}
+
+.attraction-card .ratings {
+    float: right;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 0 20px;
+}
+
+.attraction-card .rating {
+    margin: 10px 20px;
+    color: var(--accent);
+    font-weight: 600;
+}

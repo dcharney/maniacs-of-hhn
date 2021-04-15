@@ -1,0 +1,12 @@
+.sticky-btm {
+    position: fixed;
+    bottom: 0;
+}
+
+#footer {
+    background-color: var(--dark);
+    width: 100%;
+    padding: 10px;
+    text-align: center;
+    z-index: 999;
+}
