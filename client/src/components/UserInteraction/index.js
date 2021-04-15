@@ -32,7 +32,12 @@ function UserInteraction(props) {
         }
     }, [props]);
 
-
+    function updateComments(newComment) {
+        setComments([
+            ...comments,
+            newComment
+        ]);
+    }
 
     return(
         <section className="user-interaction">
@@ -68,7 +73,7 @@ function UserInteraction(props) {
                     {/* only allow commenting when logged in */}
                     {loggedIn ? 
                         <Collapsible trigger="add comment" triggerWhenOpen="cancel">
-                            <Comment postId={postId} attractionId={attractionId} addComment={(newComment) => {console.log(newComment)}} />
+                            <Comment postId={postId} attractionId={attractionId} addComment={(newComment) => {updateComments(newComment)}} />
                         </Collapsible>
                     :
                         <div>
