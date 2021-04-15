@@ -28,7 +28,6 @@
     "react-bootstrap-icons": "^1.4.0",
     "react-collapsible": "^2.8.3",
     "react-moment": "^1.1.1",
-
     "react-twitter-widgets": "^1.10.0"
   },
   "devDependencies": {

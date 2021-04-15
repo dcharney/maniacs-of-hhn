@@ -1,7 +1,7 @@
 import React from 'react';
 import Auth from '../utils/auth';
 import { Link } from "react-router-dom";
-
+import AttractionList from '../components/AttractionList';
 
 function MyContent() {
     const loggedIn = Auth.loggedIn();
@@ -10,6 +10,7 @@ function MyContent() {
             {loggedIn ? 
                 <div>
                     <h1>My Content</h1>
+                    <AttractionList />
                 </div>
             :
                 <div>

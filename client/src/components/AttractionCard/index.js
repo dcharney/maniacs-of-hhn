@@ -23,15 +23,12 @@ const AttractionCard = ({ currentAttraction }) => {
     const { loading, data } = useQuery(QUERY_ME);
     const myAttractions = data?.me.savedAttractions || [];
 
-    
-
     const [ savedAttractionIds, setSavedAttractionIds ] = useState([]);
     const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
-    
-    
 
     useEffect(() => {
         if (myAttractions.length) {
+            console.log(myAttractions)
             setSavedAttractionIds(myAttractions.map(attraction => {return attraction._id}));
         }
     }, [myAttractions.length]);
