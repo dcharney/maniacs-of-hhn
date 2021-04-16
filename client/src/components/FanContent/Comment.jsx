@@ -24,6 +24,8 @@ const Comment = (props) => {
           </form>
           </section>
         </>
+
+        
       );
     };
      export default Comment;

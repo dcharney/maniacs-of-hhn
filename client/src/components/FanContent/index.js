@@ -27,7 +27,7 @@ const FanContent = () => {
       }
     
       return (
-        <div className="Inputinfo" style={{ width: 800 }}>
+        <div className="Inputinfo"style={{ width: 800 }}>
           {backendData.map(ele => 
             <div style={noteRootStyle}>
               <h3>{ele.title}</h3>
