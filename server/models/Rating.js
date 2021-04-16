@@ -1,12 +1,3 @@
-/* 
--Ratings
-	-username
-	-attraction id?
-	-scare factor
-	-crowd index
-	-overall rating(not part of database. Pulled from stats of other database info.)
-*/
-
 const { Schema, model } = require('mongoose');
 
 const ratingSchema = new Schema(
