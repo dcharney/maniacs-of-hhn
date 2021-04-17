@@ -20,3 +20,51 @@
     margin: left;
     width: 20%;
 }
+
+.mi {
+    max-width: 25%;
+    
+
+}
+
+.vc {
+    max-width: 20%;
+    height: 150;
+}
+
+.lg {
+    max-width: 25%;
+
+}
+
+.cc {
+    max-width: 25%;
+
+}
+
+.imgs {
+    display:flex;
+    justify-content: space-between;
+
+
+}
+
+.bb {
+    pointer-events: none;
+}
+
+
+.FC {
+    font-family: 'Creepster', cursive;
+    text-align: center;
+    font-weight: bold;
+}
+
+.tline {
+    text-align: center;
+}
+
+.Content {
+    text-align: right;
+    font-size: 10px;
+}
