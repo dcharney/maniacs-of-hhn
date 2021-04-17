@@ -21,6 +21,7 @@
     "react-script-tag": "^1.1.2",
     "react-scripts": "4.0.3",
     "react-share": "^4.4.0",
+    "react-slideshow-image": "^3.4.6",
     "web-vitals": "^0.2.4",
     "workbox-background-sync": "^5.1.4",
     "workbox-broadcast-update": "^5.1.4",
