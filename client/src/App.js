@@ -5,7 +5,6 @@ import Footer from './components/Footer';
 import Home from './pages/Home';
 import Explore from './pages/Explore';
 import Fan from './pages/FanContent';
-import Comment from './components/FanContent/Comment';
 import Attraction from './pages/Attraction';
 import ChatRoom from './pages/Chat';
 import Rumors from './pages/Rumors';
@@ -45,7 +44,6 @@ function App() {
                             <Route exact path="/explore" component={Explore} />
                             <Route exact path="/attraction/:attractionId" component={Attraction} />
                             <Route exact path="/fan" component={Fan} />
-                            <Route exact path="/comment" component={Comment} />
                             <Route exact path="/chat" component={ChatRoom} />
                             <Route exact path="/rumors" component={Rumors}/>
                             <Route exact path="/content" component={MyContent}/>
