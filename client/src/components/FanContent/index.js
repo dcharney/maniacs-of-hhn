@@ -38,6 +38,7 @@ const FanContent = () => {
                 </div>
             </div>
           )}
+          <div><p className='Content'>*Check out new food and drink recipes weekly from HHN</p></div>
           <div className="imgs">
                 <img alt="" className='mi' src={mangoinferno}/>
                 <img alt="" className='vc' src={vampirecurse}/>

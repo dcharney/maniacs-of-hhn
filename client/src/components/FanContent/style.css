@@ -63,3 +63,8 @@
 .tline {
     text-align: center;
 }
+
+.Content {
+    text-align: right;
+    font-size: 10px;
+}
