@@ -15,22 +15,26 @@ function Attraction() {
         if (data) {
             setCurrentAttraction(data.attraction);
         } else if (!loading) {
+
             idbPromise('attractions', 'get').then((attractions => {
                 // use retrieved data to populate attraction info
-                setCurrentAttraction(attractions.filter(attraction => attraction._id === attractionId));
+                setCurrentAttraction(attractions.find(attraction => attraction._id === attractionId));
             }))
         }
     }, [data, loading, attractionId] );
     
     return (
         <main id="attraction">
-            {currentAttraction.year ? (
+            {currentAttraction?.year ? (
                 <div>
                     <AttractionCard currentAttraction={currentAttraction} />
-                    <UserInteraction attraction={currentAttraction} />
+                    {data && (<UserInteraction attraction={currentAttraction} />)}
                 </div>
             ) : (
-                <p> Loading... </p>
+                <div>
+                    {loading ? ( <h2>Loading...</h2>) : (!data && ( <h2> Attraction info not available offline. Please go online to store this attraction to your trip planner! </h2>))
+                    }
+                </div>
             )}
         </main>
     )
