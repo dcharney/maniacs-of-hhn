@@ -5,6 +5,7 @@ import { FaPlus, FaMinus } from 'react-icons/fa';
 import { useQuery, useMutation } from '@apollo/react-hooks';
 import { QUERY_ME } from '../../utils/queries';
 import { SAVE_ATTRACTION } from "../../utils/mutations";
+import { idbPromise } from "../../utils/helpers";
 
 
 const AttractionCard = ({ currentAttraction }) => {
@@ -14,24 +15,27 @@ const AttractionCard = ({ currentAttraction }) => {
         park,
         year,
         description,
-        // category
+        category
     } = currentAttraction;
+
     const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
     const currentYear = year.year;
     const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
 
     const { loading, data } = useQuery(QUERY_ME);
-    const myAttractions = data?.me.savedAttractions || [];
 
     const [ savedAttractionIds, setSavedAttractionIds ] = useState([]);
     const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
 
     useEffect(() => {
-        if (myAttractions.length) {
-            console.log(myAttractions)
-            setSavedAttractionIds(myAttractions.map(attraction => {return attraction._id}));
+        if (data) {
+            setSavedAttractionIds(data.me.savedAttractions.map(attraction => {return attraction._id}));
+            // save to local storage
+            data.me.savedAttractions.forEach(attraction => {
+                idbPromise('attractions', 'put', attraction);
+            });
         }
-    }, [myAttractions.length]);
+    }, [data, loading]);
     
     if (loading) {
         return <h2>LOADING...</h2>;
