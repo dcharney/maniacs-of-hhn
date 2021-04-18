@@ -37,7 +37,7 @@ const AttractionCard = ({ currentAttraction }) => {
             //means were offline
             idbPromise('attractions', 'get').then((attractions => {
                 // use retrieved data to populate attraction info
-                setSavedAttractionIds(attractions);
+                setSavedAttractionIds(attractions.map(attraction => attraction._id));
             }))
         }
     }, [data, loading]);
