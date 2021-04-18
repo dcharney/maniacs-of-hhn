@@ -17,15 +17,12 @@ const AttractionCard = ({ currentAttraction }) => {
         description,
         category
     } = currentAttraction;
-    let currentPark, currentYear, currentName;
-    if (park.park) {
-        currentPark = (park.park).toLowerCase().replace(/\s/g, "");
-        currentYear = year.year;
-        currentName = name.toLowerCase().replace(/[\s\W]/g, "");
-    };
+
+    const currentPark = (park.park).toLowerCase().replace(/\s/g, "");
+    const currentYear = year.year;
+    const currentName = name.toLowerCase().replace(/[\s\W]/g, "");
 
     const { loading, data } = useQuery(QUERY_ME);
-
     const [ savedAttractionIds, setSavedAttractionIds ] = useState([]);
     const [ saveAttraction ] = useMutation(SAVE_ATTRACTION);
 

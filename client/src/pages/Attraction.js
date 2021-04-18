@@ -10,29 +10,24 @@ function Attraction() {
     const { attractionId } = useParams();
     const [currentAttraction, setCurrentAttraction] = useState({});
     const { loading, data } = useQuery(QUERY_ATTRACTION, { variables: { attractionId }});
-    console.log(currentAttraction.year)
 
     useEffect(() => {
-        if (data?.attraction.year) {
+        if (data) {
             setCurrentAttraction(data.attraction);
-        } else if (data) {
-            console.log('here')
         } else if (!loading) {
-            console.log('loading')
             idbPromise('attractions', 'get').then((attractions => {
                 // use retrieved data to populate attraction info
-                // setCurrentAttraction(attractions.filter(attraction => attraction._id === attractionId));
+                setCurrentAttraction(attractions.filter(attraction => attraction._id === attractionId));
             }))
         }
-    }, [data, loading] );
+    }, [data, loading, attractionId] );
     
     return (
         <main id="attraction">
             {currentAttraction.year ? (
                 <div>
-                    <p>{currentAttraction.year.year}</p>
                     <AttractionCard currentAttraction={currentAttraction} />
-                    {/* <UserInteraction attraction={currentAttraction} /> */}
+                    <UserInteraction attraction={currentAttraction} />
                 </div>
             ) : (
                 <p> Loading... </p>
