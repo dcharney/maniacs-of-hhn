@@ -19,6 +19,10 @@ export const QUERY_ME = gql`
             savedAttractions { 
                 _id
                 name
+                park { park }
+                year { year }
+                description
+                category { name }
              }
         }
     }
