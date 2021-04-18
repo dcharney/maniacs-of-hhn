@@ -19,12 +19,54 @@ const resolvers = {
         // get all users
         users: async () => {
             return User.find()
-            .select('-__v -password');
+            .select('-__v -password')
+                .populate({
+                    path: 'savedAttractions',
+                    populate: {
+                        path:'park',
+                        model: 'Park'
+                    }
+                })
+                .populate({
+                    path: 'savedAttractions',
+                    populate: {
+                        path:'year',
+                        model: 'Year'
+                    }
+                })
+                .populate({
+                    path: 'savedAttractions',
+                    populate: {
+                        path:'category',
+                        model: 'Category'
+                    }
+                });
         },
         me: async (parent, args, context) => {
             if (context.user) {
                 const userData = await User.findOne({ _id: context.user._id})
-                    .select('-__v -password').populate('savedAttractions');
+                    .select('-__v -password').select('-__v -password')
+                    .populate({
+                        path: 'savedAttractions',
+                        populate: {
+                            path:'park',
+                            model: 'Park'
+                        }
+                    })
+                    .populate({
+                        path: 'savedAttractions',
+                        populate: {
+                            path:'year',
+                            model: 'Year'
+                        }
+                    })
+                    .populate({
+                        path: 'savedAttractions',
+                        populate: {
+                            path:'category',
+                            model: 'Category'
+                        }
+                    });
                 return userData
             }
             throw new AuthenticationError('Cannot find a user with this id!');
